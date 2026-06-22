@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Carlos da Silva — Líder de Tecnologia</title>
+<meta name="description" content="Gerente de Tecnologia com 11+ anos de experiência: liderança de times, engenharia Python/PHP, arquitetura AWS Serverless, Data Lake e IA aplicada a negócio.">
+<meta name="theme-color" content="#0c1417">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Daniel Carlos da Silva — Líder de Tecnologia">
+<meta property="og:description" content="Gerente de Tecnologia com 11+ anos de experiência: liderança de times, engenharia Python/PHP, arquitetura AWS Serverless, Data Lake e IA aplicada a negócio.">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Daniel Carlos da Silva — Líder de Tecnologia">
+<meta name="twitter:description" content="Gerente de Tecnologia com 11+ anos de experiência: liderança, engenharia, cloud AWS, dados e IA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c1417;
+    --bg-elev:#101d22;
+    --bg-card:#13242a;
+    --line:#1f3940;
+    --line-soft:#19302f;
+    --ink:#e8f0ee;
+    --ink-dim:#9fb4b2;
+    --ink-faint:#6c8581;
+    --accent:#e0a458;       /* âmbar */
+    --accent-2:#4fd1c0;     /* verde-cloud */
+    --accent-deep:#b8803a;
+    --radius:4px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#0c1417}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent-2);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(12,20,23,.82);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;position:relative}
+  .brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;letter-spacing:.04em}
+  .brand span{color:var(--accent)}
+  .navlinks{display:flex;gap:26px}
+  .navlinks a{font-size:13px;color:var(--ink-dim);transition:color .2s}
+  .navlinks a:hover{color:var(--ink)}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:var(--radius);width:38px;height:34px;cursor:pointer;position:relative}
+  .nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{
+    content:"";position:absolute;left:9px;width:20px;height:2px;background:var(--ink);transition:.2s;
+  }
+  .nav-toggle span{top:16px}
+  .nav-toggle span::before{top:-6px}
+  .nav-toggle span::after{top:6px}
+  .nav-toggle.open span{background:transparent}
+  .nav-toggle.open span::before{top:0;transform:rotate(45deg)}
+  .nav-toggle.open span::after{top:0;transform:rotate(-45deg)}
+  @media(max-width:680px){
+    .navlinks{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;gap:0;background:var(--bg-elev);
+      border-bottom:1px solid var(--line-soft);padding:6px 0;
+    }
+    .navlinks.open{display:flex}
+    .navlinks a{padding:13px 28px;border-top:1px solid var(--line-soft)}
+    .navlinks a:first-child{border-top:none}
+    .nav-toggle{display:block}
+  }
+
+  /* ---------- HERO ---------- */
+  header{
+    position:relative;
+    padding:88px 0 72px;
+    border-bottom:1px solid var(--line-soft);
+    overflow:hidden;
+  }
+  header::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(640px 300px at 78% 8%, rgba(224,164,88,.10), transparent 60%),
+      radial-gradient(520px 280px at 12% 92%, rgba(79,209,192,.08), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-grid{position:relative;display:grid;grid-template-columns:1fr;gap:30px}
+  .role-line{
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-faint);
+    margin-bottom:22px;display:flex;align-items:center;gap:10px;
+  }
+  .role-line .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 0 3px rgba(79,209,192,.18)}
+  h1{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:clamp(34px,6vw,62px);line-height:1.04;letter-spacing:-.02em;
+    margin-bottom:18px;
+  }
+  h1 .hl{color:var(--accent)}
+  .lede{font-size:clamp(16px,2.1vw,20px);color:var(--ink-dim);max-width:62ch}
+  .lede strong{color:var(--ink);font-weight:600}
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:30px;
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-dim);
+  }
+  .hero-meta span{display:flex;align-items:center;gap:8px}
+  .hero-meta b{color:var(--accent-2);font-weight:500}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .btn{
+    font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;
+    padding:11px 20px;border-radius:var(--radius);border:1px solid var(--line);
+    color:var(--ink);transition:.2s;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn.primary{background:var(--accent);color:#0c1417;border-color:var(--accent);font-weight:700}
+  .btn.primary:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+  .btn:hover{border-color:var(--accent-2);color:var(--accent-2)}
+  .btn.primary:hover{color:#0c1417}
+
+  /* ---------- SECTION ---------- */
+  section{padding:74px 0;border-bottom:1px solid var(--line-soft)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:38px}
+  .sec-head h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:clamp(24px,3.4vw,34px);letter-spacing:-.01em;
+  }
+  .sec-no{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);}
+
+  /* ---------- POSITIONING / focus cards ---------- */
+  .focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:760px){.focus-grid{grid-template-columns:1fr}}
+  .focus{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;transition:.25s;
+  }
+  .focus:hover{border-color:var(--accent-2);transform:translateY(-3px)}
+  .focus h3{font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:8px}
+  .focus p{font-size:14px;color:var(--ink-dim)}
+  .focus .tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
+
+  /* ---------- METRICS (signature) ---------- */
+  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(max-width:760px){.metrics{grid-template-columns:1fr}}
+  .metric{padding:28px 24px;position:relative;background:var(--bg-card)}
+  .metric .out{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent-2);letter-spacing:.1em;margin-bottom:14px;display:block}
+  .metric .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,5vw,46px);line-height:1;color:var(--accent)}
+  .metric .lab{font-size:13px;color:var(--ink-dim);margin-top:10px}
+  .metric-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-faint);margin-top:16px}
+
+  /* ---------- TIMELINE ---------- */
+  .tl{position:relative;padding-left:30px}
+  .tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:var(--line)}
+  .tl-item{position:relative;padding:0 0 36px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{
+    content:"";position:absolute;left:-27px;top:6px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);
+  }
+  .tl-item.current::before{background:var(--accent);box-shadow:0 0 0 4px rgba(224,164,88,.18)}
+  .tl-when{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-faint);letter-spacing:.05em}
+  .tl-role{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin:5px 0 2px}
+  .tl-co{font-size:14px;color:var(--accent-2);margin-bottom:12px}
+  .tl-item ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .tl-item li{font-size:14.5px;color:var(--ink-dim);padding-left:18px;position:relative}
+  .tl-item li::before{content:"›";position:absolute;left:0;color:var(--accent);font-family:'JetBrains Mono',monospace}
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.proj-grid{grid-template-columns:1fr}}
+  .proj{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;display:flex;flex-direction:column;transition:.25s;position:relative;overflow:hidden;
+  }
+  .proj::after{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--accent);transition:height .3s}
+  .proj:hover{border-color:var(--line);transform:translateY(-3px)}
+  .proj:hover::after{height:100%}
+  .proj .cat{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent-2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+  .proj h3{font-family:'Space Grotesk',sans-serif;font-size:20px;margin-bottom:10px;line-height:1.2}
+  .proj p{font-size:14px;color:var(--ink-dim);margin-bottom:16px;flex-grow:1}
+  .impacts{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+  .impacts li{font-size:13.5px;color:var(--ink);padding-left:20px;position:relative}
+  .impacts li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
+  .stack{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-dim);border:1px solid var(--line);padding:3px 9px;border-radius:99px}
+
+  /* ---------- SKILLS ---------- */
+  .skill-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  @media(max-width:760px){.skill-cols{grid-template-columns:1fr}}
+  .skill-col h4{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .skill-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .skill-col li{font-size:14px;color:var(--ink-dim)}
+  .skill-col li b{color:var(--ink);font-weight:500}
+
+  /* ---------- EDU / CERT ---------- */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:46px}
+  @media(max-width:760px){.two-col{grid-template-columns:1fr;gap:38px}}
+  .edu-item{padding:14px 0;border-bottom:1px solid var(--line-soft)}
+  .edu-item:last-child{border-bottom:none}
+  .edu-item .deg{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:500}
+  .edu-item .meta{font-size:13px;color:var(--ink-faint);font-family:'JetBrains Mono',monospace;margin-top:3px}
+  .edu-item .st{font-family:'JetBrains Mono',monospace;font-size:11px;padding:2px 8px;border-radius:99px;border:1px solid var(--accent-2);color:var(--accent-2);margin-left:8px}
+  .edu-item .st.done{border-color:var(--ink-faint);color:var(--ink-faint)}
+  .cert-list{display:flex;flex-wrap:wrap;gap:9px}
+  .cert{font-size:13px;color:var(--ink-dim);border:1px solid var(--line);padding:7px 12px;border-radius:var(--radius);background:var(--bg-card)}
+
+  /* ---------- ROLES strip ---------- */
+  .roles-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .role-pill{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);border:1px solid var(--line);padding:9px 16px;border-radius:99px;background:var(--bg-card);transition:.2s}
+  .role-pill:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ---------- CONTACT ---------- */
+  .contact-box{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:40px 34px;text-align:center;
+  }
+  .contact-box h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3.6vw,34px);margin-bottom:12px}
+  .contact-box p{color:var(--ink-dim);margin-bottom:26px}
+  .contact-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+  footer{padding:34px 0;text-align:center}
+  footer p{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-faint)}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  @media(max-width:480px){
+    .wrap{padding:0 18px}
+    header{padding:56px 0 48px}
+    section{padding:54px 0}
+    .cta-row{flex-direction:column}
+    .cta-row .btn{justify-content:center}
+    .contact-box{padding:30px 20px}
+    .contact-links{flex-direction:column}
+    .contact-links .btn{justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">DC<span>.</span>silva</div>
+    <div class="navlinks" id="navlinks">
+      <a href="#sobre">Sobre</a>
+      <a href="#impacto">Impacto</a>
+      <a href="#trajetoria">Trajetória</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#stack">Stack</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="role-line"><span class="dot"></span> disponível para liderança em tecnologia · Fortaleza/CE · presencial · híbrido · remoto</div>
+      <h1>Daniel Carlos<br>da Silva</h1>
+      <p class="lede">Líder de tecnologia com <strong>11+ anos na 3e Soluções</strong>, da base técnica à gestão. Lidero diretamente um <strong>time de 19 pessoas</strong> e sustento uma operação com <strong>SLA de 99,7% e +10.000 acessos mensais</strong>. Conecto engenharia, cloud AWS, dados e IA à gestão de times — com foco em eficiência operacional, governança e entrega de valor.</p>
+      <div class="hero-meta">
+        <span>função atual: <b>Gerente de Tecnologia</b></span>
+        <span>time: <b>19 pessoas (direto)</b></span>
+        <span>setor: <b>energia / sistemas corporativos</b></span>
+      </div>
+      <div class="hero-meta" style="margin-top:10px">
+        <span>crescimento da empresa em 2024: <b>+52%</b> (revista Exame)</span>
+        <span>projeção de faturamento 2026: <b>R$ 200 milhões</b></span>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="#contato">Entrar em contato</a>
+        <a class="btn" href="https://www.linkedin.com/in/danielcdasilva" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="#projetos">Ver projetos</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">01</span><h2>Posicionamento</h2></div>
+    <p class="lede reveal" style="margin-bottom:36px">Meu diferencial é a <strong>combinação rara entre liderança de pessoas e profundidade técnica real</strong>. Não sou um gestor distante da engenharia, nem um técnico sem visão de negócio — atuo nos dois mundos ao mesmo tempo, traduzindo demandas operacionais em arquitetura e times em entregas.</p>
+    <div class="focus-grid">
+      <div class="focus reveal">
+        <span class="tag">Liderança</span>
+        <h3>Gestão de pessoas</h3>
+        <p>Times multidisciplinares (dev, infra, suporte, dados, estagiários), 1:1 periódicos, feedback, PDI com modelo CHA e cultura Full Cycle.</p>
+      </div>
+      <div class="focus reveal">
+        <span class="tag">Engenharia</span>
+        <h3>Hands-on técnico</h3>
+        <p>Python/Django, PHP/Laravel, APIs e integrações, arquitetura serverless em AWS, Data Lake, Docker e práticas de DevOps.</p>
+      </div>
+      <div class="focus reveal">
+        <span class="tag">Negócio</span>
+        <h3>Resultado operacional</h3>
+        <p>Redução de custos de cloud, governança e LGPD, melhoria de SLAs, automação com IA e sustentação de sistemas críticos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACTO -->
+<section id="impacto">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">02</span><h2>Impacto em destaque</h2></div>
+    <div class="metrics reveal">
+      <div class="metric">
+        <span class="out">$ team --size</span>
+        <div class="num">19</div>
+        <div class="lab">pessoas lideradas diretamente em time multidisciplinar (dev, infra, suporte, dados).</div>
+      </div>
+      <div class="metric">
+        <span class="out">$ tickets --year</span>
+        <div class="num">4.260</div>
+        <div class="lab">tickets resolvidos no ano sob política de SLA estruturada por prioridade.</div>
+      </div>
+      <div class="metric">
+        <span class="out">$ platform --access</span>
+        <div class="num">+10k</div>
+        <div class="lab">acessos mensais à plataforma sustentada em cloud AWS Serverless.</div>
+      </div>
+      <div class="metric">
+        <span class="out">$ sla --first-response</span>
+        <div class="num">99,7%</div>
+        <div class="lab">de SLA de primeira resposta; 99,65% de SLA de resolução.</div>
+      </div>
+      <div class="metric">
+        <span class="out">$ fcr --rate</span>
+        <div class="num">79,2%</div>
+        <div class="lab">First Contact Resolution, com tempo médio de resolução de 6,7h.</div>
+      </div>
+      <div class="metric">
+        <span class="out">$ ia --conformidade</span>
+        <div class="num">100%</div>
+        <div class="lab">de integração e conformidade no sistema de aprovações de campo (Approvols/LPT).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAJETORIA -->
+<section id="trajetoria">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">03</span><h2>Trajetória</h2></div>
+    <div class="tl">
+      <div class="tl-item current reveal">
+        <div class="tl-when">JUN 2022 — ATUAL</div>
+        <div class="tl-role">Gerente de Tecnologia · Data &amp; Cloud Engineering Manager</div>
+        <div class="tl-co">3e Soluções · Fortaleza/CE</div>
+        <ul>
+          <li>Liderança direta de time multidisciplinar de 19 pessoas (dev, infra, suporte, dados), com Scrum, sprints semanais, Kanban e framework Cynefin.</li>
+          <li>Operação de suporte com 4.260 tickets resolvidos no ano, sustentando SLA de primeira resposta de 99,7% e SLA de resolução de 99,65%.</li>
+          <li>Gestão de pessoas com ciclos de feedback, modelo CHA e PDI, consolidando a cultura Full Cycle.</li>
+          <li>Arquitetura cloud-native AWS Serverless e Data Lake (Medallion) com foco em escalabilidade, segurança e otimização de custos.</li>
+          <li>Engenharia hands-on em Python/Django e PHP/Laravel — liderou criação e lançamento beta da plataforma 3e Cronos (controle de ponto).</li>
+          <li>Soluções com IA para automação de auditoria e validação de relatórios de campo; governança, segurança da informação e LGPD.</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">OUT 2019 — JUN 2022</div>
+        <div class="tl-role">Analista de TI Sênior</div>
+        <div class="tl-co">3e Soluções</div>
+        <ul>
+          <li>Inovação técnica e análise de requisitos para soluções de medição e geração de energia.</li>
+          <li>Engenharia de integrações e telemetria em tempo real de usinas fotovoltaicas (Solar View) e medidores Kron.</li>
+          <li>Entrega de projetos de alta complexidade com foco em prazo, desempenho e qualidade.</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">FEV 2018 — OUT 2019</div>
+        <div class="tl-role">Analista de TI Pleno</div>
+        <div class="tl-co">3e Soluções</div>
+        <ul>
+          <li>Levantamento de requisitos e especificação de sistemas internos (projetos socioambientais e fluxos de vendas).</li>
+          <li>Manutenção de integrações via APIs e administração de servidores, garantindo estabilidade e disponibilidade.</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">FEV 2015 — FEV 2018</div>
+        <div class="tl-role">Assistente de TI</div>
+        <div class="tl-co">3e Soluções</div>
+        <ul>
+          <li>Suporte técnico N1 via Helpdesk, gestão de ativos e manutenção da infraestrutura interna.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">04</span><h2>Projetos &amp; impactos</h2></div>
+    <div class="proj-grid">
+
+      <div class="proj reveal">
+        <span class="cat">Inteligência Artificial</span>
+        <h3>Sistema Multi-Agente de IA para análise de licitações</h3>
+        <p>Solução com agentes inteligentes e LLMs para monitorar portais e diários oficiais, interpretar editais e avaliar aderência ao perfil da empresa (risco, localização, margem, viabilidade).</p>
+        <ul class="impacts">
+          <li>Reduziu fortemente o esforço manual na triagem de licitações</li>
+          <li>Padronizou a avaliação de oportunidades comerciais</li>
+          <li>Automatizou o monitoramento em larga escala</li>
+        </ul>
+        <div class="stack">
+          <span class="chip">Python</span><span class="chip">LLMs</span><span class="chip">AWS</span><span class="chip">Agentes Autônomos</span><span class="chip">Eng. de Dados</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <span class="cat">Dados &amp; Cloud</span>
+        <h3>Arquitetura Cloud AWS &amp; Data Lake corporativo</h3>
+        <p>Concepção e implementação de arquitetura AWS Serverless e Data Lake (Medallion) para centralizar dados operacionais e apoiar decisão estratégica, com governança alinhada à LGPD.</p>
+        <ul class="impacts">
+          <li>Centralizou dados operacionais em larga escala</li>
+          <li>Aumentou confiabilidade e rastreabilidade dos dados</li>
+          <li>Reduziu tempo de acesso a informações estratégicas</li>
+        </ul>
+        <div class="stack">
+          <span class="chip">AWS Lambda</span><span class="chip">S3</span><span class="chip">Data Lake</span><span class="chip">PySpark</span><span class="chip">Apache Spark</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <span class="cat">Engenharia de Software</span>
+        <h3>3e Cronos — plataforma de controle de ponto</h3>
+        <p>Liderança da criação e lançamento da fase beta de plataforma interna de controle de ponto e gestão de tempo corporativo, conectando requisitos de negócio, produto e engenharia.</p>
+        <ul class="impacts">
+          <li>Plataforma interna lançada do zero ao beta</li>
+          <li>Integração entre necessidade de negócio e engenharia</li>
+          <li>Base para gestão de tempo de toda a operação</li>
+        </ul>
+        <div class="stack">
+          <span class="chip">Python</span><span class="chip">Django</span><span class="chip">PHP</span><span class="chip">Laravel</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <span class="cat">Inteligência Artificial &amp; Energia</span>
+        <h3>eco3e — Plataforma de Reciclagem para Concessionárias</h3>
+        <p>Liderança técnica da plataforma eco3e, que sustenta os programas E+ Reciclagem e Ecoenel das concessionárias Enel e Equatorial em múltiplos estados. Fluxo completo de coleta, pesagem, bonificação e crédito automático em conta, com agentes de IA garantindo auditoria e rastreabilidade.</p>
+        <ul class="impacts">
+          <li>Operação de reciclagem em escala para grandes concessionárias de energia</li>
+          <li>Automatizou o processamento de bonificações, eliminando etapas manuais</li>
+          <li>Auditoria digital completa do ciclo de coleta e bonificação</li>
+        </ul>
+        <div class="stack">
+          <span class="chip">Python</span><span class="chip">AWS</span><span class="chip">LLMs</span><span class="chip">Agentes Autônomos</span><span class="chip">Automação Documental</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <span class="cat">Telemetria &amp; Energia</span>
+        <h3>Integração e telemetria de usinas fotovoltaicas</h3>
+        <p>Engenharia de coleta e processamento de dados em tempo real de usinas via Solar View, com análise de consumo por medidores Kron e relatórios operacionais automatizados.</p>
+        <ul class="impacts">
+          <li>Automatizou coleta de dados de múltiplas usinas</li>
+          <li>Aumentou precisão dos dados de consumo</li>
+          <li>Reduziu tempo de identificação de falhas operacionais</li>
+        </ul>
+        <div class="stack">
+          <span class="chip">Python</span><span class="chip">Solar View</span><span class="chip">Medidores Kron</span><span class="chip">APIs</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <span class="cat">Operações &amp; Suporte</span>
+        <h3>Governança de Service Desk &amp; política de SLA</h3>
+        <p>Estruturação da operação de suporte com política de SLA por prioridade (Urgente 15m · Alta 1h · Média 2h · Baixa 6h) e rituais de acompanhamento de indicadores.</p>
+        <ul class="impacts">
+          <li>4.260 tickets resolvidos no ano</li>
+          <li>SLA de 99,7% (resposta) e 99,65% (resolução)</li>
+          <li>First Contact Resolution de 79,2%</li>
+        </ul>
+        <div class="stack">
+          <span class="chip">SLA</span><span class="chip">Service Desk</span><span class="chip">Indicadores</span><span class="chip">Governança</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <span class="cat">Liderança &amp; Cultura</span>
+        <h3>Programa de desenvolvimento de pessoas &amp; Full Cycle</h3>
+        <p>Estruturação de ciclos de feedback e PDIs baseados no modelo CHA para devs, analistas e estagiários, consolidando a cultura Full Cycle com autonomia ponta a ponta.</p>
+        <ul class="impacts">
+          <li>PDIs individuais para todo o time</li>
+          <li>Cultura Full Cycle consolidada</li>
+          <li>Maior engajamento e retenção de talentos</li>
+        </ul>
+        <div class="stack">
+          <span class="chip">PDI</span><span class="chip">Modelo CHA</span><span class="chip">Full Cycle</span><span class="chip">Scrum</span><span class="chip">Cynefin</span>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <span class="cat">Automação &amp; Integração</span>
+        <h3>Automação de processos via APIs corporativas</h3>
+        <p>Integrações complexas via APIs entre plataformas corporativas, automatizando fluxos de gestão de projetos socioambientais e vendas, com padronização entre sistemas heterogêneos.</p>
+        <ul class="impacts">
+          <li>Reduziu inconsistências de dados entre sistemas</li>
+          <li>Automatizou fluxos de trabalho operacionais</li>
+          <li>Garantiu alta disponibilidade das integrações</li>
+        </ul>
+        <div class="stack">
+          <span class="chip">APIs REST</span><span class="chip">Laravel</span><span class="chip">Python</span><span class="chip">Integração</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">05</span><h2>Competências &amp; stack</h2></div>
+    <div class="skill-cols">
+      <div class="skill-col reveal">
+        <h4>Gestão &amp; liderança</h4>
+        <ul>
+          <li><b>Liderança</b> de times multidisciplinares</li>
+          <li><b>1:1</b>, feedback, PDI, modelo CHA</li>
+          <li><b>Ágil:</b> Scrum, Kanban, Cynefin</li>
+          <li><b>Governança</b> de TI, SLA, gestão de incidentes</li>
+          <li><b>Stakeholders</b> e priorização de demandas</li>
+          <li>Cultura <b>Full Cycle</b></li>
+        </ul>
+      </div>
+      <div class="skill-col reveal">
+        <h4>Engenharia &amp; cloud</h4>
+        <ul>
+          <li><b>Python</b> / Django · <b>PHP</b> / Laravel</li>
+          <li><b>AWS</b> Serverless, Lambda, S3</li>
+          <li><b>Docker</b> · DevOps · CI/CD</li>
+          <li><b>APIs</b> REST · integrações · microsserviços</li>
+          <li><b>Bancos:</b> MySQL, PostgreSQL</li>
+          <li>Node.js · React (apoio)</li>
+        </ul>
+      </div>
+      <div class="skill-col reveal">
+        <h4>Dados, IA &amp; negócio</h4>
+        <ul>
+          <li><b>Data Lake</b> · arquitetura Medallion</li>
+          <li><b>PySpark</b> · Apache Spark · ETL/ELT</li>
+          <li><b>BI</b> · Power BI · indicadores</li>
+          <li><b>IA:</b> LLMs, agentes, automação documental</li>
+          <li><b>LGPD</b> · governança de dados</li>
+          <li>Redução de custos · eficiência operacional</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:42px">
+      <p class="eyebrow" style="margin-bottom:14px">Posições-alvo</p>
+      <div class="roles-strip">
+        <span class="role-pill">Gerente de Tecnologia / TI</span>
+        <span class="role-pill">Engineering Manager</span>
+        <span class="role-pill">Tech Lead Manager</span>
+        <span class="role-pill">Coordenador de TI</span>
+        <span class="role-pill">Gerente de Projetos de Dados</span>
+        <span class="role-pill">Liderança em Transformação Digital</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMACAO -->
+<section id="formacao">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">06</span><h2>Formação &amp; certificações</h2></div>
+    <div class="two-col">
+      <div class="reveal">
+        <p class="eyebrow" style="margin-bottom:18px">Formação acadêmica</p>
+        <div class="edu-item">
+          <div class="deg">Pós-graduação em Inteligência Artificial <span class="st">em curso</span></div>
+          <div class="meta">UNIFOR · jan 2026 — dez 2026</div>
+        </div>
+        <div class="edu-item">
+          <div class="deg">MBA em Liderança e Gestão de Pessoas <span class="st">em curso</span></div>
+          <div class="meta">Descomplica · mai 2026 — fev 2027</div>
+        </div>
+        <div class="edu-item">
+          <div class="deg">Pós-graduação em Engenharia de Software <span class="st done">concluída</span></div>
+          <div class="meta">Descomplica · jul 2025 — jan 2026</div>
+        </div>
+        <div class="edu-item">
+          <div class="deg">Graduação Tecnológica em Redes de Computadores <span class="st done">concluída</span></div>
+          <div class="meta">Faculdade Evolução · 2013 — 2016</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow" style="margin-bottom:18px">Certificações selecionadas</p>
+        <div class="cert-list">
+          <span class="cert">Gestão de Pessoas — Times de Alto Desempenho</span>
+          <span class="cert">Gerenciamento Avançado de Projetos</span>
+          <span class="cert">Comunicação Assertiva para Gestores</span>
+          <span class="cert">Metodologias de Desenvolvimento de Software</span>
+          <span class="cert">Docker</span>
+          <span class="cert">Bizagi / BPMN</span>
+          <span class="cert">PHP Orientado a Objetos</span>
+          <span class="cert">Essencial Database</span>
+          <span class="cert">Microsoft Azure Machine Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" style="border-bottom:none">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <span class="eyebrow">vamos conversar</span>
+      <h2 style="margin-top:14px">Aberto a oportunidades de liderança em tecnologia</h2>
+      <p>Gestão técnica, engenharia, cloud, dados e IA — presencial em Fortaleza/CE, híbrido ou remoto.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:daniellcarllosti@gmail.com">daniellcarllosti@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/danielcdasilva" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="tel:+5585988012177">(85) 98801-2177</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Daniel Carlos da Silva · Líder de Tecnologia · Maracanaú/CE · 2026</p>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navlinks = document.getElementById('navlinks');
+  navToggle.addEventListener('click', ()=>{
+    const isOpen = navlinks.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navlinks.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      navlinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay = (i % 3 * 0.06) + 's';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
