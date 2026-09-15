@@ -10,11 +10,14 @@ Site pessoal de uma página, publicado via GitHub Pages.
 .
 ├── index.html          # markup do site (sem estilo/script embutido)
 ├── artigos/             # páginas individuais de artigo / estudo de caso
+├── apresentacao.html    # slide-deck de trajetória (tema claro, separado da home)
 ├── css/
-│   └── style.css       # todo o CSS do site (home + artigos)
+│   ├── style.css       # CSS da home + artigos (tema dark/terminal)
+│   └── apresentacao.css # CSS isolado do slide-deck (tema claro)
 ├── js/
-│   └── main.js         # menu mobile, reveal on scroll, spotlight do cursor,
-│                         # barra de progresso, scrollspy, voltar ao topo
+│   ├── main.js         # menu mobile, reveal on scroll, spotlight do cursor,
+│   │                     # barra de progresso, scrollspy, voltar ao topo
+│   └── apresentacao.js # navegação por slide e animação de contagem do deck
 ├── docs/
 │   └── curriculo.md    # currículo em markdown, fonte do conteúdo do site
 ├── sitemap.xml, robots.txt

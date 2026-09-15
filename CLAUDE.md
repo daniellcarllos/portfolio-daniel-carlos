@@ -8,17 +8,22 @@ Site pessoal de uma página (+ subseção de artigos), **HTML/CSS/JS puro, sem b
 
 ```
 .
-├── index.html          # markup da home (todas as seções da landing page)
-├── artigos/             # páginas individuais de artigo/estudo de caso
-├── css/style.css        # todo o CSS do site (home + artigos)
+├── index.html          # markup da home (todas as seções da landing page, tema dark/terminal)
+├── artigos/             # páginas individuais de artigo/estudo de caso (mesmo tema da home)
+├── apresentacao.html    # slide-deck de trajetória, tema CLARO próprio, isolado da home
+├── css/style.css        # CSS da home + artigos (tema dark/terminal)
+├── css/apresentacao.css # CSS isolado do slide-deck (tema claro — NÃO reaproveita style.css)
 ├── js/main.js           # menu mobile, reveal on scroll, spotlight do cursor,
-│                         # barra de progresso, scrollspy, botão voltar ao topo
+│                         # barra de progresso, scrollspy, botão voltar ao topo (home + artigos)
+├── js/apresentacao.js   # navegação por slide (teclado/scroll/toque) e count-up do deck
 ├── docs/curriculo.md    # currículo em markdown, fonte do conteúdo do site
 ├── sitemap.xml, robots.txt
 └── update-site.sh       # git add + commit + push (publica no GitHub Pages)
 ```
 
 Não introduza um framework, bundler ou gerenciador de pacotes para resolver uma tarefa pontual. O site é deliberadamente estático.
+
+`apresentacao.html` é intencionalmente um sistema visual separado (tema claro, paleta e componentes próprios em `css/apresentacao.css`) — não fundir com `css/style.css` nem tentar reconciliar as duas paletas. Se o conteúdo da trajetória mudar na home (`index.html`), replicar manualmente as mudanças factuais no deck (`apresentacao.html`), já que não há fonte única compartilhada entre os dois.
 
 ## Regra número 1: nunca inventar fatos sobre a carreira do usuário
 

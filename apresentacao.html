@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apresentação — Daniel Carlos da Silva</title>
+<meta name="description" content="Apresentação da trajetória de Daniel Carlos da Silva: de assistente de TI a Líder de Tecnologia, com liderança, engenharia, dados e IA aplicada a negócio.">
+<meta name="theme-color" content="#05070d">
+<link rel="canonical" href="https://danielcarlos.dev/apresentacao.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Apresentação — Daniel Carlos da Silva">
+<meta property="og:description" content="Trajetória de assistente de TI a Líder de Tecnologia — liderança, engenharia, dados e IA aplicada a negócio.">
+<meta property="og:url" content="https://danielcarlos.dev/apresentacao.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://danielcarlos.dev/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://danielcarlos.dev/assets/og-image.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Orbitron:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/apresentacao.css">
+</head>
+<body>
+
+<canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
+<div class="deck-bg" aria-hidden="true"></div>
+
+<svg class="vault-emblem" viewBox="0 0 400 400" aria-hidden="true">
+  <g class="ring ring-outer">
+    <circle cx="200" cy="200" r="190" fill="none" stroke="var(--gold)" stroke-width="0.6"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(30 200 200)"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(60 200 200)"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(90 200 200)"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(120 200 200)"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(150 200 200)"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(180 200 200)"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(210 200 200)"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(240 200 200)"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(270 200 200)"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(300 200 200)"/>
+    <line x1="200" y1="8" x2="200" y2="24" stroke="var(--gold)" stroke-width="1.5" transform="rotate(330 200 200)"/>
+  </g>
+  <g class="ring ring-mid">
+    <circle cx="200" cy="200" r="150" fill="none" stroke="var(--cyan)" stroke-width="0.6" stroke-dasharray="2 8"/>
+  </g>
+  <g class="ring ring-inner">
+    <polygon points="200,80 305,140 305,260 200,320 95,260 95,140" fill="none" stroke="var(--gold)" stroke-width="1"/>
+  </g>
+  <circle cx="200" cy="200" r="4" fill="var(--cyan)"/>
+</svg>
+
+<div class="equation-ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Ψ(x,τ) = ∫ Λ(x,τ)dτ&nbsp;&nbsp;·&nbsp;&nbsp;P(evento) = lim(n→∞) Σ pᵢ&nbsp;&nbsp;·&nbsp;&nbsp;δ(trajetória) &lt; ε&nbsp;&nbsp;·&nbsp;&nbsp;H(sistema) = −Σ p·log(p)&nbsp;&nbsp;·&nbsp;&nbsp;∇·F = ρ/ε₀&nbsp;&nbsp;·&nbsp;&nbsp;R(t+1) = f(R(t), θ)&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+    <span>Ψ(x,τ) = ∫ Λ(x,τ)dτ&nbsp;&nbsp;·&nbsp;&nbsp;P(evento) = lim(n→∞) Σ pᵢ&nbsp;&nbsp;·&nbsp;&nbsp;δ(trajetória) &lt; ε&nbsp;&nbsp;·&nbsp;&nbsp;H(sistema) = −Σ p·log(p)&nbsp;&nbsp;·&nbsp;&nbsp;∇·F = ρ/ε₀&nbsp;&nbsp;·&nbsp;&nbsp;R(t+1) = f(R(t), θ)&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+  </div>
+</div>
+
+<a class="deck-home" href="index.html">← Portfólio completo</a>
+
+<div class="deck-progress"><span id="deckProgress"></span></div>
+
+<main class="deck" id="deck">
+
+  <!-- 00 · COVER -->
+  <section class="slide" data-slide="0">
+    <div class="slide-inner cover">
+      <span class="tag mono anim">$ registro --tipo=trajetória --status=ativo</span>
+      <h1 class="anim">Daniel Carlos<br>da Silva</h1>
+      <p class="sub anim">Engenheiro de software que virou gestor — e manteve os dois.</p>
+      <div class="cover-meta anim">Líder de Tecnologia · 11+ anos de experiência · Fortaleza/CE</div>
+      <div class="hint anim">use <kbd>↓</kbd> <kbd>espaço</kbd> ou role para navegar<span class="cursor-blink">_</span></div>
+    </div>
+  </section>
+
+  <!-- 01 · QUEM SOU -->
+  <section class="slide" data-slide="1">
+    <div class="slide-inner">
+      <span class="eyebrow anim">Registro 01 · Identidade</span>
+      <h2 class="anim">Três frentes, uma única pessoa</h2>
+      <p class="lead anim">Não sou gestor que se afastou da técnica: sou o profissional que traduz complexidade técnica em decisão de negócio — e vice-versa.</p>
+      <div class="cards-3 anim">
+        <div class="card">
+          <span class="card-tag">Liderança</span>
+          <h3>Gestão de pessoas</h3>
+          <p>Times multidisciplinares, 1:1 periódicos, feedback, PDI com modelo CHA e cultura Full Cycle.</p>
+        </div>
+        <div class="card">
+          <span class="card-tag">Engenharia</span>
+          <h3>Hands-on técnico</h3>
+          <p>Python/Django, PHP/Laravel, APIs, arquitetura serverless em AWS, Data Lake e DevOps.</p>
+        </div>
+        <div class="card">
+          <span class="card-tag">Negócio</span>
+          <h3>Resultado operacional</h3>
+          <p>Redução de custos de cloud, governança, LGPD, melhoria de SLAs e automação com IA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · IMPACTO -->
+  <section class="slide" data-slide="2">
+    <div class="slide-inner">
+      <span class="eyebrow anim">Registro 02 · Impacto</span>
+      <h2 class="anim">Números que sustentam a operação</h2>
+      <div class="stats-grid anim">
+        <div class="stat">
+          <span class="stat-num" data-count-to="19">0</span>
+          <span class="stat-lab">pessoas lideradas</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count-to="11" data-suffix="+">0</span>
+          <span class="stat-lab">anos de experiência</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count-to="99.7" data-decimals="1" data-suffix="%">0</span>
+          <span class="stat-lab">SLA de 1ª resposta</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count-to="4260" data-thousands="true">0</span>
+          <span class="stat-lab">tickets resolvidos/ano</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count-to="10" data-prefix="+" data-suffix="k">0</span>
+          <span class="stat-lab">acessos mensais</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count-to="52" data-prefix="+" data-suffix="%">0</span>
+          <span class="stat-lab">crescimento da empresa (2024)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · TRAJETORIA -->
+  <section class="slide" data-slide="3">
+    <div class="slide-inner">
+      <span class="eyebrow anim">Registro 03 · Trajetória</span>
+      <h2 class="anim">De assistente de TI a gerente de tecnologia</h2>
+      <div class="deck-timeline anim">
+        <div class="dt-item">
+          <span class="dt-when">2015 — 2018</span>
+          <span class="dt-role">Assistente de TI</span>
+          <span class="dt-desc">Suporte técnico N1, gestão de ativos e infraestrutura interna.</span>
+        </div>
+        <div class="dt-item">
+          <span class="dt-when">2018 — 2019</span>
+          <span class="dt-role">Analista de TI Pleno</span>
+          <span class="dt-desc">Requisitos, integrações via API e administração de servidores.</span>
+        </div>
+        <div class="dt-item">
+          <span class="dt-when">2019 — 2022</span>
+          <span class="dt-role">Analista de TI Sênior</span>
+          <span class="dt-desc">Telemetria em tempo real de usinas fotovoltaicas e medidores.</span>
+        </div>
+        <div class="dt-item current">
+          <span class="dt-when">2022 — atual</span>
+          <span class="dt-role">Gerente de Tecnologia</span>
+          <span class="dt-desc">Liderança de 19 pessoas, arquitetura AWS, Data Lake e IA aplicada.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · PROJETOS -->
+  <section class="slide" data-slide="4">
+    <div class="slide-inner">
+      <span class="eyebrow anim">Registro 04 · Projetos em destaque</span>
+      <h2 class="anim">Onde a arquitetura encontra o resultado</h2>
+      <div class="cards-2x2 anim">
+        <div class="card">
+          <span class="card-tag">Inteligência Artificial</span>
+          <h3>Multi-agente de IA para licitações</h3>
+          <p>Agentes especializados monitoram editais e avaliam aderência ao perfil da empresa.</p>
+        </div>
+        <div class="card">
+          <span class="card-tag">Energia &amp; IA</span>
+          <h3>eco3e — reciclagem &amp; bonificação</h3>
+          <p>Trilha de auditoria ponta a ponta para crédito automático em conta (Enel/Equatorial).</p>
+        </div>
+        <div class="card">
+          <span class="card-tag">Dados &amp; Cloud</span>
+          <h3>Data Lake corporativo AWS</h3>
+          <p>Arquitetura Serverless e Medallion para centralizar dados operacionais com governança LGPD.</p>
+        </div>
+        <div class="card">
+          <span class="card-tag">Arquitetura &amp; Dados</span>
+          <h3>Troca com Bônus Equatorial GO</h3>
+          <p>+2 milhões de requisições e R$ 12 milhões em verba processados sem intervenção manual.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · STACK -->
+  <section class="slide" data-slide="5">
+    <div class="slide-inner">
+      <span class="eyebrow anim">Registro 05 · Stack</span>
+      <h2 class="anim">Ferramentas do dia a dia</h2>
+      <div class="tag-cloud anim">
+        <span>Python</span><span>Django</span><span>PHP</span><span>Laravel</span>
+        <span>AWS Serverless</span><span>Data Lake</span><span>PySpark</span>
+        <span>LLMs &amp; Agentes de IA</span><span>Docker</span><span>MySQL</span>
+        <span>PostgreSQL</span><span>Power BI</span><span>Scrum</span><span>Kanban</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · RESULTADO DE NEGOCIO -->
+  <section class="slide" data-slide="6">
+    <div class="slide-inner">
+      <span class="eyebrow anim">Registro 06 · Resultado de negócio</span>
+      <h2 class="anim">Tecnologia que aparece no resultado</h2>
+      <div class="big-stats anim">
+        <div class="big-stat">
+          <span class="stat-num" data-count-to="52" data-prefix="+" data-suffix="%">0</span>
+          <span class="stat-lab">crescimento da 3e Soluções em 2024 (revista Exame)</span>
+        </div>
+        <div class="big-stat">
+          <span class="stat-num" data-count-to="200" data-prefix="R$ " data-suffix=" milhões">0</span>
+          <span class="stat-lab">projeção de faturamento para 2026</span>
+        </div>
+      </div>
+      <p class="lead anim">Resultado de negócio sustentado pela tecnologia que lidero — não uptime isolado, impacto que aparece no resultado da empresa.</p>
+    </div>
+  </section>
+
+  <!-- 07 · FORMACAO -->
+  <section class="slide" data-slide="7">
+    <div class="slide-inner">
+      <span class="eyebrow anim">Registro 07 · Formação</span>
+      <h2 class="anim">Aprendizado contínuo</h2>
+      <div class="edu-list anim">
+        <div class="edu-row"><span>Pós-graduação em Inteligência Artificial</span><span class="st">em curso · UNIFOR</span></div>
+        <div class="edu-row"><span>MBA em Liderança e Gestão de Pessoas</span><span class="st">em curso · Descomplica</span></div>
+        <div class="edu-row"><span>Pós-graduação em Engenharia de Software</span><span class="st done">concluída · Descomplica</span></div>
+        <div class="edu-row"><span>Graduação em Redes de Computadores</span><span class="st done">concluída · Faculdade Evolução</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · CONTATO -->
+  <section class="slide" data-slide="8">
+    <div class="slide-inner cover">
+      <span class="eyebrow anim">Registro 08 · Transmissão</span>
+      <h2 class="anim">Aberto a oportunidades de liderança em tecnologia</h2>
+      <p class="lead anim">Gestão técnica, engenharia, cloud, dados e IA — presencial em Fortaleza/CE, híbrido ou remoto.</p>
+      <div class="cta-row anim">
+        <a class="btn primary" href="mailto:contato@danielcarlos.dev">contato@danielcarlos.dev</a>
+        <a class="btn" href="https://www.linkedin.com/in/danielcdasilva" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="https://wa.me/5585988012177" target="_blank" rel="noopener">WhatsApp ↗</a>
+      </div>
+      <a class="deck-back-link anim" href="index.html">Ver portfólio completo →</a>
+    </div>
+  </section>
+
+</main>
+
+<nav class="deck-dots" id="deckDots" aria-label="Navegação da apresentação"></nav>
+
+<div class="deck-controls">
+  <button id="prevSlide" class="deck-btn" aria-label="Slide anterior">↑</button>
+  <span class="deck-counter" id="deckCounter">01 / 09</span>
+  <button id="nextSlide" class="deck-btn" aria-label="Próximo slide">↓</button>
+</div>
+
+<script src="js/apresentacao.js"></script>
+
+</body>
+</html>

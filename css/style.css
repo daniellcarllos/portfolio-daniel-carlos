@@ -265,6 +265,15 @@ section{padding:74px 0;border-bottom:1px solid var(--line-soft)}
 .tl-item li{font-size:15px;color:var(--ink-dim);padding-left:18px;position:relative}
 .tl-item li::before{content:"›";position:absolute;left:0;color:var(--accent);font-family:'JetBrains Mono',monospace}
 
+.deck-cta{
+  display:inline-flex;align-items:center;gap:8px;margin-top:30px;
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent-2);
+  border:1px solid var(--line);border-radius:99px;padding:10px 18px;transition:.25s var(--ease);
+}
+.deck-cta:hover{border-color:var(--accent-2);transform:translateX(3px)}
+.deck-cta span{transition:transform .25s var(--ease)}
+.deck-cta:hover span{transform:translateX(3px)}
+
 /* ---------- PROJECTS ---------- */
 .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 @media(max-width:760px){.proj-grid{grid-template-columns:1fr}}
