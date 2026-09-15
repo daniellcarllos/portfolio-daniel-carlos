@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De 2 milhões de requisições a R$ 12 milhões em operação — Daniel Carlos da Silva</title>
+<meta name="description" content="Os desafios de engenharia por trás do Troca com Bônus Equatorial GO: por que escala técnica sozinha diz pouco, e o que aprendi conectando arquitetura, dados e resultado financeiro.">
+<meta name="theme-color" content="#0c1417">
+<link rel="canonical" href="https://danielcarlos.dev/artigos/troca-bonus-equatorial-go.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="De 2 milhões de requisições a R$ 12 milhões em operação">
+<meta property="og:description" content="Por que escala técnica sozinha diz pouco, e o que aprendi conectando arquitetura, dados e resultado financeiro numa operação real de grande porte.">
+<meta property="og:url" content="https://danielcarlos.dev/artigos/troca-bonus-equatorial-go.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://danielcarlos.dev/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="De 2 milhões de requisições a R$ 12 milhões em operação">
+<meta name="twitter:description" content="Os desafios de engenharia por trás do Troca com Bônus Equatorial GO.">
+<meta name="twitter:image" content="https://danielcarlos.dev/assets/og-image.png">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "De 2 milhões de requisições a R$ 12 milhões em operação: os desafios de engenharia por trás do Troca com Bônus Equatorial GO",
+  "description": "Por que escala técnica sozinha diz pouco, e o que aprendi conectando arquitetura, dados e resultado financeiro numa operação real de grande porte.",
+  "author": { "@type": "Person", "name": "Daniel Carlos da Silva", "url": "https://danielcarlos.dev/" },
+  "url": "https://danielcarlos.dev/artigos/troca-bonus-equatorial-go.html"
+}
+</script>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="scroll-progress"><span id="scrollBar"></span></div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../index.html">DC<span>.</span>silva</a>
+    <div class="navlinks" id="navlinks">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#projetos">Projetos</a>
+      <a href="../index.html#artigos">Artigos</a>
+      <a href="../index.html#contato">Contato</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  </div>
+</nav>
+
+<header class="article-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#artigos">← Voltar para Artigos</a>
+    <span class="cat">Arquitetura &amp; Dados</span>
+    <h1>De 2 milhões de requisições a R$ 12 milhões em operação: os desafios de engenharia por trás do Troca com Bônus Equatorial GO</h1>
+    <p class="dek">Por que escala técnica sozinha diz pouco, e o que aprendi conectando arquitetura, dados e resultado financeiro numa operação real de grande porte.</p>
+    <div class="article-meta-row">
+      <span>Daniel Carlos da Silva</span>
+      <span>·</span>
+      <span>6 min de leitura</span>
+      <span>·</span>
+      <span>Equatorial Goiás</span>
+    </div>
+  </div>
+</header>
+
+<article class="article-body reveal">
+
+  <h2>O problema</h2>
+  <p>Em tecnologia, é relativamente fácil falar sobre escalabilidade quando o sistema ainda está no diagrama de arquitetura.</p>
+  <p>O desafio real começa quando milhares de pessoas passam a utilizar a solução, o volume cresce rapidamente e cada indisponibilidade deixa de ser apenas um problema técnico para se tornar um problema operacional e financeiro.</p>
+  <p>Em 2026, tive a oportunidade de participar da condução tecnológica do projeto <strong>Troca com Bônus — Equatorial Goiás</strong>, uma operação que conectou tecnologia, atendimento ao cliente, varejo, análise de dados e eficiência energética.</p>
+  <p>Durante a operação, a arquitetura responsável pelo fluxo de cadastros precisou suportar mais de <strong>2 milhões de requisições</strong>, mantendo disponibilidade e capacidade de processamento em um cenário de grande concentração de acessos.</p>
+  <p>Mas escala técnica, isoladamente, diz pouco.</p>
+  <p>O que torna esse projeto particularmente interessante são os números de negócio que estavam por trás dessas requisições. No momento deste levantamento, o dashboard da operação registrava a casa de <strong>15 mil pré-cadastros aprovados</strong>, mais de <strong>6 mil vendas confirmadas</strong> e uma verba de projeto já consumida na faixa de <strong>99% do total disponível</strong> — cerca de <strong>R$ 12 milhões</strong>.</p>
+  <p>Ou seja: não estávamos simplesmente mantendo uma aplicação web funcionando. Estávamos sustentando tecnologicamente uma operação que movimentou mais de R$ 12 milhões.</p>
+
+  <h2>Decisões de arquitetura</h2>
+  <p>Projetar uma aplicação para alguns milhares de acessos é uma coisa. Projetá-la sabendo que uma campanha pode gerar picos concentrados de requisições é outra completamente diferente.</p>
+  <p>Nesse tipo de cenário, algumas decisões passam a ser fundamentais:</p>
+  <ul>
+    <li><strong>Escalabilidade</strong> — a infraestrutura precisa absorver crescimento sem exigir intervenção manual a cada aumento de demanda.</li>
+    <li><strong>Observabilidade</strong> — não basta saber que "o sistema está funcionando". É necessário acompanhar comportamento, erros, gargalos e capacidade da infraestrutura.</li>
+    <li><strong>Performance</strong> — uma diferença de poucos segundos pode representar milhares de pessoas esperando simultaneamente por uma resposta.</li>
+    <li><strong>Resiliência</strong> — falhas precisam ser isoladas para evitar que um problema específico comprometa toda a operação.</li>
+    <li><strong>Dados</strong> — a tecnologia também precisa transformar a operação em informação capaz de orientar decisões.</li>
+  </ul>
+  <p>Foi justamente por isso que o <strong>dashboard gerencial</strong> se tornou uma parte importante da solução. Ele permitiu acompanhar não apenas indicadores técnicos, mas o resultado da operação praticamente em tempo real.</p>
+
+  <h2>Desafios &amp; aprendizados</h2>
+  <p>Os números do dashboard não serviam só para acompanhamento técnico — apoiavam perguntas diretas de negócio: onde existe maior adesão, onde existe capacidade para expansão, quais equipamentos possuem maior demanda, onde concentrar operação, estoque ou atendimento, quais regiões precisam de ações específicas.</p>
+  <p>É nesse momento que engenharia de software, dados e estratégia começam a se encontrar. Uma aplicação transacional gera dados. Uma boa plataforma transforma esses dados em capacidade de decisão.</p>
+  <p>Projetos assim reforçam algo que tenho percebido cada vez mais atuando na gestão de tecnologia: <strong>escalabilidade não é somente aumentar servidores</strong>. É necessário escalar arquitetura, processos e pessoas ao mesmo tempo.</p>
+  <p>A aplicação pode estar preparada para milhões de requisições, mas o projeto ainda falha se o suporte não estiver preparado. O sistema pode responder em milissegundos, mas a operação ainda pode parar se uma integração não tiver mecanismos adequados de contingência. O banco pode suportar milhares de transações, mas a gestão continua tomando decisões lentamente se não existir uma camada de dados capaz de transformar essas informações em indicadores.</p>
+  <p>Por isso, hoje enxergo arquitetura em pelo menos quatro dimensões: <strong>Tecnologia → Dados → Operação → Negócio.</strong> Quando uma decisão tecnológica melhora essas quatro dimensões simultaneamente, deixamos de falar apenas de desenvolvimento de software e começamos a falar de engenharia aplicada ao resultado empresarial.</p>
+  <blockquote>É possível olhar para o sistema e discutir requisições, APIs e disponibilidade. Mas também é possível olhar para o mesmo sistema e encontrar R$ 12 milhões processados, milhares de vendas confirmadas e milhares de clientes aprovados.</blockquote>
+
+  <h2>Resultado</h2>
+  <p>Para mim, esse é um dos melhores indicadores de maturidade de uma área de tecnologia: quando conseguimos explicar uma solução tanto para um engenheiro de software quanto para uma diretoria — usando linguagens diferentes, mas falando sobre o mesmo resultado.</p>
+  <p>Tecnologia não deveria ser percebida apenas pelo sistema que entregamos. Ela precisa ser percebida pelo resultado que ajudamos o negócio a alcançar.</p>
+
+  <div class="article-callout">
+    <span class="eyebrow">Stack utilizada</span>
+    <p>Laravel e Laravel Nova para a plataforma e o painel gerencial, MySQL como banco de dados, com observabilidade e integrações dedicadas para sustentar picos de acesso em campanha.</p>
+  </div>
+
+</article>
+
+<div class="article-footer-cta">
+  <div class="contact-box reveal">
+    <span class="eyebrow">vamos conversar</span>
+    <h2 style="margin-top:14px">Quer trocar uma ideia sobre arquitetura para operações de grande escala?</h2>
+    <p>Estou aberto a conversas sobre liderança técnica, engenharia e IA aplicada a negócio.</p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:contato@danielcarlos.dev">contato@danielcarlos.dev</a>
+      <a class="btn" href="https://www.linkedin.com/in/danielcdasilva" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Daniel Carlos da Silva · Líder de Tecnologia · Maracanaú/CE · 2026</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Voltar ao topo">↑</button>
+
+<script src="../js/main.js"></script>
+
+</body>
+</html>
