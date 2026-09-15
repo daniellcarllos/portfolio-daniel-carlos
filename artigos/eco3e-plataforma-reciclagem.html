@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eco3e — arquitetura de auditoria para bonificação financeira em escala — Daniel Carlos da Silva</title>
+<meta name="description" content="Decisões de arquitetura e aprendizados construindo a plataforma eco3e, que sustenta programas de reciclagem e bonificação de concessionárias de energia.">
+<meta name="theme-color" content="#0c1417">
+<link rel="canonical" href="https://danielcarlos.dev/artigos/eco3e-plataforma-reciclagem.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="eco3e: arquitetura de auditoria para bonificação financeira em escala">
+<meta property="og:description" content="Como desenhamos uma trilha auditável ponta a ponta para um fluxo que credita dinheiro real na conta do cliente — e por que IA aqui é apoio, não decisão final.">
+<meta property="og:url" content="https://danielcarlos.dev/artigos/eco3e-plataforma-reciclagem.html">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="eco3e: arquitetura de auditoria para bonificação financeira em escala">
+<meta name="twitter:description" content="Decisões de arquitetura e aprendizados na plataforma eco3e (Enel/Equatorial).">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "eco3e: arquitetura de auditoria para bonificação financeira em escala",
+  "description": "Decisões de arquitetura e aprendizados construindo a plataforma eco3e, que sustenta programas de reciclagem e bonificação de concessionárias de energia.",
+  "author": { "@type": "Person", "name": "Daniel Carlos da Silva", "url": "https://danielcarlos.dev/" },
+  "url": "https://danielcarlos.dev/artigos/eco3e-plataforma-reciclagem.html"
+}
+</script>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="scroll-progress"><span id="scrollBar"></span></div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../index.html">DC<span>.</span>silva</a>
+    <div class="navlinks" id="navlinks">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#projetos">Projetos</a>
+      <a href="../index.html#artigos">Artigos</a>
+      <a href="../index.html#contato">Contato</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  </div>
+</nav>
+
+<header class="article-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#artigos">← Voltar para Artigos</a>
+    <span class="cat">Inteligência Artificial &amp; Energia · Arquitetura de software</span>
+    <h1>eco3e: arquitetura de auditoria para bonificação financeira em escala</h1>
+    <p class="dek">Como desenhamos uma trilha auditável ponta a ponta para um fluxo que credita dinheiro real na conta do cliente — e por que, aqui, IA é apoio à decisão, não decisora.</p>
+    <div class="article-meta-row">
+      <span>Daniel Carlos da Silva</span>
+      <span>·</span>
+      <span>7 min de leitura</span>
+      <span>·</span>
+      <span>3e Soluções</span>
+    </div>
+  </div>
+</header>
+
+<article class="article-body reveal">
+
+  <h2>O problema</h2>
+  <p>A eco3e sustenta os programas de reciclagem <strong>E+ Reciclagem</strong> e <strong>Ecoenel</strong>, das concessionárias Enel e Equatorial, em múltiplos estados. O fluxo é simples de descrever e delicado de operar: o cliente entrega material reciclável, o material é pesado, a pesagem gera uma bonificação, e essa bonificação vira <strong>crédito automático na conta de energia do cliente</strong>. Ou seja: cada etapa do sistema, direta ou indiretamente, movimenta dinheiro real de terceiros — e faz isso em múltiplos estados, cada um com suas particularidades operacionais.</p>
+  <p>Isso muda completamente o tipo de decisão de arquitetura que se pode tomar. Um erro de automação aqui não é só um bug — é um crédito incorreto na conta de um cliente de uma concessionária de energia.</p>
+
+  <h2>Decisões de arquitetura</h2>
+  <p>A decisão central foi tratar o fluxo como uma sequência de <strong>estágios auditáveis e versionados</strong> — coleta, pesagem, cálculo de bonificação e crédito em conta — em vez de um processo único de ponta a ponta. Cada estágio registra o que recebeu, o que decidiu e por quê, criando uma trilha que pode ser reconstituída depois, caso uma concessionária ou um cliente questione um crédito.</p>
+  <p>Os agentes de IA entram nesse fluxo na camada de <strong>auditoria e validação</strong> — conferindo fotos e documentos de pesagem, cruzando dados entre etapas e sinalizando inconsistências — e não na camada de decisão final de liberar o crédito. Essa foi uma escolha deliberada: dado o risco financeiro direto ao consumidor, o sistema foi desenhado para que a IA acelere a detecção de anomalias, mas a liberação segue regras determinísticas e auditáveis, não uma inferência probabilística de um modelo.</p>
+  <p>A outra decisão importante foi de <strong>modelagem multi-tenant</strong>: operar em múltiplos estados e concessionárias significa regras de negócio diferentes (percentuais de bonificação, tetos, documentação exigida) para clientes diferentes. Em vez de duplicar código por concessionária/estado, o sistema parametriza essas regras, mantendo a lógica central única e as variações isoladas em configuração.</p>
+  <blockquote>Quando o sistema mexe em dinheiro de terceiros, a pergunta certa não é "como automatizar 100%", é "como tornar cada decisão auditável".</blockquote>
+
+  <h2>Desafios &amp; aprendizados</h2>
+  <p>O maior aprendizado foi entender que, em sistemas com impacto financeiro direto, <strong>confiabilidade e auditabilidade pesam mais do que velocidade de automação total</strong>. Foi tentador, no início, buscar o fluxo 100% automático do início ao fim; a decisão certa foi manter pontos de verificação e uma trilha de auditoria completa desde o primeiro dia, mesmo que isso significasse um pouco mais de latência entre a pesagem e o crédito.</p>
+  <p>Outro aprendizado foi sobre <strong>parametrização de regras de negócio</strong>: a tentação inicial de resolver a diferença entre estados com condicionais espalhadas pelo código teria virado dívida técnica rapidamente à medida que novas concessionárias e estados entrassem no programa. Isolar essas regras em configuração, desde cedo, evitou essa explosão de complexidade quando a operação escalou.</p>
+  <p>Por fim, ficou claro que <strong>auditoria digital não é feature, é requisito de arquitetura</strong> em qualquer sistema que toque dinheiro de terceiros — e isso precisa ser decidido no desenho inicial, não adicionado depois como camada de compliance.</p>
+
+  <h2>Resultado</h2>
+  <p>A plataforma sustenta hoje a operação de reciclagem em escala para grandes concessionárias de energia, automatizou o processamento de bonificações eliminando etapas manuais e mantém auditoria digital completa de todo o ciclo — da coleta ao crédito na conta do cliente.</p>
+
+  <div class="article-callout">
+    <span class="eyebrow">Stack utilizada</span>
+    <p>Python, AWS, LLMs e agentes autônomos para a camada de auditoria, com automação documental para validação de fotos e comprovantes de pesagem.</p>
+  </div>
+
+</article>
+
+<div class="article-footer-cta">
+  <div class="contact-box reveal">
+    <span class="eyebrow">vamos conversar</span>
+    <h2 style="margin-top:14px">Quer trocar uma ideia sobre sistemas com risco financeiro real?</h2>
+    <p>Estou aberto a conversas sobre liderança técnica, engenharia e IA aplicada a negócio.</p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:contato@danielcarlos.dev">contato@danielcarlos.dev</a>
+      <a class="btn" href="https://www.linkedin.com/in/danielcdasilva" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Daniel Carlos da Silva · Líder de Tecnologia · Maracanaú/CE · 2026</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Voltar ao topo">↑</button>
+
+<script src="../js/main.js"></script>
+
+</body>
+</html>

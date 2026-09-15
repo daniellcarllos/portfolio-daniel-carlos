@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema multi-agente de IA para análise de licitações — Daniel Carlos da Silva</title>
+<meta name="description" content="Decisões de arquitetura e aprendizados na construção de um sistema multi-agente com LLMs para monitorar editais e avaliar aderência ao perfil da empresa.">
+<meta name="theme-color" content="#0c1417">
+<link rel="canonical" href="https://danielcarlos.dev/artigos/sistema-multiagente-licitacoes.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sistema multi-agente de IA para análise de licitações">
+<meta property="og:description" content="Por que dividi o problema em agentes especializados em vez de um único LLM monolítico, e o que isso ensinou sobre confiança e human-in-the-loop.">
+<meta property="og:url" content="https://danielcarlos.dev/artigos/sistema-multiagente-licitacoes.html">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sistema multi-agente de IA para análise de licitações">
+<meta name="twitter:description" content="Decisões de arquitetura e aprendizados construindo agentes de IA para triagem de licitações.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sistema multi-agente de IA para análise de licitações",
+  "description": "Decisões de arquitetura e aprendizados na construção de um sistema multi-agente com LLMs para monitorar editais e avaliar aderência ao perfil da empresa.",
+  "author": { "@type": "Person", "name": "Daniel Carlos da Silva", "url": "https://danielcarlos.dev/" },
+  "url": "https://danielcarlos.dev/artigos/sistema-multiagente-licitacoes.html"
+}
+</script>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="scroll-progress"><span id="scrollBar"></span></div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../index.html">DC<span>.</span>silva</a>
+    <div class="navlinks" id="navlinks">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#projetos">Projetos</a>
+      <a href="../index.html#artigos">Artigos</a>
+      <a href="../index.html#contato">Contato</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  </div>
+</nav>
+
+<header class="article-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#artigos">← Voltar para Artigos</a>
+    <span class="cat">Inteligência Artificial · Arquitetura de software</span>
+    <h1>Como projetei um sistema multi-agente de IA para análise de licitações</h1>
+    <p class="dek">Por que dividi o problema em agentes especializados em vez de um único LLM monolítico — e o que isso ensinou sobre confiança, custo de tokens e human-in-the-loop.</p>
+    <div class="article-meta-row">
+      <span>Daniel Carlos da Silva</span>
+      <span>·</span>
+      <span>8 min de leitura</span>
+      <span>·</span>
+      <span>3e Soluções</span>
+    </div>
+  </div>
+</header>
+
+<article class="article-body reveal">
+
+  <h2>O problema</h2>
+  <p>Empresas que participam de licitações públicas dependem de monitorar constantemente portais de compras e diários oficiais para não perder oportunidades — e cada edital publicado precisa ser lido, interpretado e avaliado contra critérios como risco, localização, margem e viabilidade operacional. Feito manualmente, esse trabalho consome horas do time comercial e jurídico todos os dias, e a qualidade da triagem varia de pessoa para pessoa.</p>
+  <p>O objetivo era claro: reduzir o esforço manual de triagem e padronizar a avaliação, sem perder a capacidade de julgamento que um analista experiente aplica ao ler um edital.</p>
+
+  <h2>Decisões de arquitetura</h2>
+  <p>A primeira decisão importante foi <strong>não</strong> resolver o problema com um único prompt gigante jogado em um LLM. Optei por dividir o fluxo em <strong>agentes especializados</strong>, cada um com uma responsabilidade estreita:</p>
+  <ul>
+    <li><strong>Agente de coleta:</strong> monitora portais e diários oficiais e normaliza formatos heterogêneos (PDF, HTML, DOC) antes de qualquer interpretação por IA.</li>
+    <li><strong>Agente de interpretação:</strong> extrai do edital os campos relevantes — objeto, prazo, valor estimado, exigências de habilitação, localização.</li>
+    <li><strong>Agente de aderência:</strong> cruza os dados extraídos com o perfil da empresa (histórico, capacidade, margem-alvo, apetite a risco) e gera um score com justificativa textual.</li>
+  </ul>
+  <p>Essa separação em pipeline, em vez de um agente monolítico, trouxe três ganhos práticos: <strong>rastreabilidade</strong> (dá para auditar em qual etapa uma interpretação errada aconteceu), <strong>controle de custo</strong> (cada etapa usa o modelo e o tamanho de contexto que realmente precisa) e <strong>pontos de revisão humana</strong> bem definidos entre as etapas, em vez de uma caixa-preta fim a fim.</p>
+  <p>Outra decisão deliberada foi normalizar o conteúdo do edital <strong>antes</strong> de enviá-lo ao LLM de interpretação. Documentos de portais públicos vêm em formatos muito inconsistentes; passar HTML ou PDF bruto direto para o modelo aumentava alucinação e custo de tokens. Um estágio de engenharia de dados dedicado a limpar e estruturar esse texto reduziu drasticamente os dois problemas.</p>
+  <blockquote>Dar contexto limpo para o LLM custa engenharia upfront, mas é muito mais barato do que corrigir decisões erradas depois.</blockquote>
+
+  <h2>Desafios &amp; aprendizados</h2>
+  <p>O maior aprendizado foi sobre <strong>onde colocar o humano no loop</strong>. A primeira versão tentava automatizar a decisão final de "participar ou não" da licitação. Rapidamente ficou claro que o time comercial não confiava numa recomendação sem justificativa — e com razão: decisão de ir ou não a uma licitação tem implicações comerciais e jurídicas que vão além do que o agente enxerga.</p>
+  <p>A solução foi reposicionar a IA como <strong>camada de triagem e priorização</strong>, não de decisão. O agente de aderência passou a devolver um score com a justificativa explícita (quais critérios pesaram a favor e contra), permitindo que o time revisasse rapidamente os editais de maior prioridade em vez de ler tudo do zero. Isso preservou o julgamento humano onde ele importa e eliminou o trabalho repetitivo de triagem inicial.</p>
+  <p>Outro aprendizado foi a necessidade de <strong>observabilidade sobre as saídas dos agentes</strong>: registrar cada interpretação e score gerado permitiu identificar padrões de erro (por exemplo, editais com formatação atípica gerando extração incorreta) e refinar os prompts e o pipeline de normalização de forma iterativa, com dados reais em vez de suposição.</p>
+
+  <h2>Resultado</h2>
+  <p>Com o pipeline em produção, o esforço manual de triagem caiu de forma consistente, a avaliação de oportunidades passou a seguir critérios padronizados (em vez de depender de quem estava lendo o edital naquele dia) e o monitoramento de portais e diários passou a acontecer em escala, sem depender de alguém acompanhando manualmente cada publicação.</p>
+
+  <div class="article-callout">
+    <span class="eyebrow">Stack utilizada</span>
+    <p>Python para orquestração dos agentes, LLMs para interpretação e scoring, AWS para hospedagem serverless com custo variável conforme volume de editais, e uma camada de engenharia de dados para normalização de documentos.</p>
+  </div>
+
+</article>
+
+<div class="article-footer-cta">
+  <div class="contact-box reveal">
+    <span class="eyebrow">vamos conversar</span>
+    <h2 style="margin-top:14px">Quer trocar uma ideia sobre arquitetura de agentes de IA?</h2>
+    <p>Estou aberto a conversas sobre liderança técnica, engenharia e IA aplicada a negócio.</p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:contato@danielcarlos.dev">contato@danielcarlos.dev</a>
+      <a class="btn" href="https://www.linkedin.com/in/danielcdasilva" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Daniel Carlos da Silva · Líder de Tecnologia · Maracanaú/CE · 2026</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Voltar ao topo">↑</button>
+
+<script src="../js/main.js"></script>
+
+</body>
+</html>

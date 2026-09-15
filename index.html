@@ -51,16 +51,21 @@
 </head>
 <body>
 
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="scroll-progress"><span id="scrollBar"></span></div>
+
 <nav>
   <div class="wrap">
     <div class="brand">DC<span>.</span>silva</div>
     <div class="navlinks" id="navlinks">
-      <a href="#sobre">Sobre</a>
-      <a href="#impacto">Impacto</a>
-      <a href="#trajetoria">Trajetória</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#stack">Stack</a>
-      <a href="#contato">Contato</a>
+      <a href="#sobre" data-nav="sobre">Sobre</a>
+      <a href="#impacto" data-nav="impacto">Impacto</a>
+      <a href="#trajetoria" data-nav="trajetoria">Trajetória</a>
+      <a href="#projetos" data-nav="projetos">Projetos</a>
+      <a href="#artigos" data-nav="artigos">Artigos</a>
+      <a href="#stack" data-nav="stack">Stack</a>
+      <a href="#contato" data-nav="contato">Contato</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
   </div>
@@ -209,7 +214,7 @@
     <div class="sec-head"><span class="sec-no">04</span><h2>Projetos &amp; impactos</h2></div>
     <div class="proj-grid">
 
-      <div class="proj reveal">
+      <div class="proj proj-featured reveal">
         <span class="cat">Inteligência Artificial</span>
         <h3>Sistema Multi-Agente de IA para análise de licitações</h3>
         <p>Solução com agentes inteligentes e LLMs para monitorar portais e diários oficiais, interpretar editais e avaliar aderência ao perfil da empresa (risco, localização, margem, viabilidade).</p>
@@ -251,7 +256,7 @@
         </div>
       </div>
 
-      <div class="proj reveal">
+      <div class="proj proj-featured reveal">
         <span class="cat">Inteligência Artificial &amp; Energia</span>
         <h3>eco3e — Plataforma de Reciclagem para Concessionárias</h3>
         <p>Liderança técnica da plataforma eco3e, que sustenta os programas E+ Reciclagem e Ecoenel das concessionárias Enel e Equatorial em múltiplos estados. Fluxo completo de coleta, pesagem, bonificação e crédito automático em conta, com agentes de IA garantindo auditoria e rastreabilidade.</p>
@@ -321,7 +326,7 @@
         </div>
       </div>
 
-      <div class="proj reveal">
+      <div class="proj proj-featured reveal">
         <span class="cat">Iniciativa própria · 2015 — atual</span>
         <h3>Formação de Talentos e Liderança Técnica</h3>
         <p>Programa recorrente que criei e conduzo desde 2015: palestras de carreira em tecnologia para turmas de cursos técnicos da rede pública, transformadas em um canal real de identificação e formação de talentos. Reconhecido pela instituição de ensino e replicado por outros setores da empresa.</p>
@@ -340,10 +345,51 @@
   </div>
 </section>
 
+<!-- ARTIGOS -->
+<section id="artigos">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-no">05</span><h2>Artigos &amp; estudos de caso</h2></div>
+    <p class="lede reveal" style="margin-bottom:36px">Bastidores de projetos reais: as decisões de arquitetura que tomei, os trade-offs e o que aprendi construindo e sustentando cada solução.</p>
+    <div class="article-grid">
+
+      <a class="article-card reveal" href="artigos/sistema-multiagente-licitacoes.html">
+        <span class="cat">Inteligência Artificial</span>
+        <h3>Como projetei um sistema multi-agente de IA para análise de licitações</h3>
+        <p>Por que dividi o problema em agentes especializados em vez de um único LLM monolítico, e o que isso ensinou sobre confiança e human-in-the-loop.</p>
+        <div class="article-meta">
+          <span>Arquitetura de software</span><span>·</span><span>8 min de leitura</span>
+        </div>
+        <span class="read-more">Ler artigo <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="article-card reveal" href="artigos/eco3e-plataforma-reciclagem.html">
+        <span class="cat">Inteligência Artificial &amp; Energia</span>
+        <h3>eco3e: arquitetura de auditoria para bonificação financeira em escala</h3>
+        <p>Como desenhamos uma trilha auditável ponta a ponta para um fluxo que credita dinheiro real na conta do cliente — e por que IA aqui é apoio, não decisão final.</p>
+        <div class="article-meta">
+          <span>Arquitetura de software</span><span>·</span><span>7 min de leitura</span>
+        </div>
+        <span class="read-more">Ler artigo <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="article-card reveal" href="artigos/3e-cronos-controle-ponto.html">
+        <span class="cat">Engenharia de Software</span>
+        <h3>3e Cronos: lançando uma plataforma interna do zero ao beta</h3>
+        <p>Decisões de stack, por que lançamos em fases e o que a liderança de produto me ensinou sobre traduzir regras de negócio em modelagem de dados.</p>
+        <div class="article-meta">
+          <span>Liderança &amp; engenharia</span><span>·</span><span>6 min de leitura</span>
+        </div>
+        <span class="read-more">Ler artigo <span aria-hidden="true">→</span></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
 <!-- STACK -->
 <section id="stack">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-no">05</span><h2>Competências &amp; stack</h2></div>
+    <div class="sec-head"><span class="sec-no">06</span><h2>Competências &amp; stack</h2></div>
     <div class="skill-cols">
       <div class="skill-col reveal">
         <h4>Gestão &amp; liderança</h4>
@@ -397,7 +443,7 @@
 <!-- FORMACAO -->
 <section id="formacao">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-no">06</span><h2>Formação &amp; certificações</h2></div>
+    <div class="sec-head"><span class="sec-no">07</span><h2>Formação &amp; certificações</h2></div>
     <div class="two-col">
       <div class="reveal">
         <p class="eyebrow" style="margin-bottom:18px">Formação acadêmica</p>
@@ -457,6 +503,8 @@
     <p>Daniel Carlos da Silva · Líder de Tecnologia · Maracanaú/CE · 2026</p>
   </div>
 </footer>
+
+<button class="to-top" id="toTop" aria-label="Voltar ao topo">↑</button>
 
 <script src="js/main.js"></script>
 

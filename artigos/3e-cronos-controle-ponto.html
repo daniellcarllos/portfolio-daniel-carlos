@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3e Cronos: lançando uma plataforma interna do zero ao beta — Daniel Carlos da Silva</title>
+<meta name="description" content="Decisões de arquitetura e aprendizados liderando a criação e o lançamento beta da 3e Cronos, plataforma interna de controle de ponto e gestão de tempo.">
+<meta name="theme-color" content="#0c1417">
+<link rel="canonical" href="https://danielcarlos.dev/artigos/3e-cronos-controle-ponto.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3e Cronos: lançando uma plataforma interna do zero ao beta">
+<meta property="og:description" content="Decisões de stack, por que lançamos em fases e o que a liderança de produto me ensinou sobre traduzir regras de negócio em modelagem de dados.">
+<meta property="og:url" content="https://danielcarlos.dev/artigos/3e-cronos-controle-ponto.html">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3e Cronos: lançando uma plataforma interna do zero ao beta">
+<meta name="twitter:description" content="Decisões de arquitetura e aprendizados lançando a plataforma 3e Cronos.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "3e Cronos: lançando uma plataforma interna do zero ao beta",
+  "description": "Decisões de arquitetura e aprendizados liderando a criação e o lançamento beta da 3e Cronos, plataforma interna de controle de ponto e gestão de tempo.",
+  "author": { "@type": "Person", "name": "Daniel Carlos da Silva", "url": "https://danielcarlos.dev/" },
+  "url": "https://danielcarlos.dev/artigos/3e-cronos-controle-ponto.html"
+}
+</script>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="scroll-progress"><span id="scrollBar"></span></div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../index.html">DC<span>.</span>silva</a>
+    <div class="navlinks" id="navlinks">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#projetos">Projetos</a>
+      <a href="../index.html#artigos">Artigos</a>
+      <a href="../index.html#contato">Contato</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  </div>
+</nav>
+
+<header class="article-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#artigos">← Voltar para Artigos</a>
+    <span class="cat">Engenharia de Software · Liderança &amp; engenharia</span>
+    <h1>3e Cronos: lançando uma plataforma interna do zero ao beta</h1>
+    <p class="dek">Decisões de stack, por que lançamos em fases e o que a liderança de produto me ensinou sobre traduzir regras de negócio em modelagem de dados.</p>
+    <div class="article-meta-row">
+      <span>Daniel Carlos da Silva</span>
+      <span>·</span>
+      <span>6 min de leitura</span>
+      <span>·</span>
+      <span>3e Soluções</span>
+    </div>
+  </div>
+</header>
+
+<article class="article-body reveal">
+
+  <h2>O problema</h2>
+  <p>A operação dependia de soluções de terceiros para controle de ponto e gestão de tempo corporativo — com as limitações de customização e integração que isso costuma trazer. A decisão foi construir uma plataforma própria, a <strong>3e Cronos</strong>, e eu liderei essa iniciativa do zero até o lançamento da fase beta, conectando requisitos de negócio, produto e engenharia num único fluxo de decisão.</p>
+
+  <h2>Decisões de arquitetura</h2>
+  <p>A primeira decisão foi de <strong>stack</strong>: Python com Django para a lógica central da plataforma, aproveitando produtividade e um ORM maduro para modelar as regras de jornada de trabalho, e PHP com Laravel onde fazia sentido integrar com sistemas internos já existentes na empresa construídos nessa stack. Em vez de forçar uma reescrita completa de tudo numa única tecnologia, a escolha foi pragmática: usar a ferramenta certa para cada parte do problema, aceitando o custo de manter duas stacks em troca de velocidade de entrega e menor risco de integração.</p>
+  <p>A segunda decisão, talvez a mais importante para o resultado final, foi <strong>lançar em fases</strong>. Em vez de tentar cobrir todas as regras de jornada de trabalho e exceções da legislação trabalhista antes do primeiro release, a plataforma foi ao ar como beta com o fluxo essencial de registro de ponto funcionando para um grupo controlado de usuários. Isso permitiu validar a usabilidade do dia a dia — algo que só se descobre com uso real — antes de investir engenharia em casos de borda que talvez nem fossem prioritários.</p>
+  <p>Na modelagem de dados, o cuidado maior foi representar <strong>jornada de trabalho e exceções</strong> (faltas, horas extras, compensações) de um jeito que refletisse fielmente as regras trabalhistas e as políticas internas da empresa, para que o sistema pudesse ser auditável e servir de base confiável para decisões de RH e folha de pagamento no futuro.</p>
+
+  <h2>Desafios &amp; aprendizados</h2>
+  <p>O maior aprendizado foi que <strong>baixo atrito no registro do dia a dia é o fator que decide a adesão</strong> a um sistema de controle de ponto — mais do que qualquer feature avançada. Colocar o beta na frente de usuários reais cedo mostrou isso rapidamente: pequenos atritos na interface de registro geravam mais reclamação do que a ausência de funcionalidades mais sofisticadas.</p>
+  <p>Também aprendi, nesse projeto, como é fácil subestimar o trabalho de <strong>tradução entre negócio e engenharia</strong> quando o domínio envolve legislação trabalhista. Regras que pareciam simples na conversa com a área de RH ("todo mundo tem direito a X horas de intervalo") escondiam exceções e casos específicos que só apareciam quando a gente tentava modelar o dado de verdade. Isso reforçou a importância de manter o time de produto, negócio e engenharia no mesmo espaço de decisão desde o início, em vez de tratar como um repasse de requisitos.</p>
+
+  <h2>Resultado</h2>
+  <p>A plataforma foi lançada do zero ao beta, conectando a necessidade de negócio diretamente à engenharia, e hoje serve de base para a gestão de tempo de toda a operação.</p>
+
+  <div class="article-callout">
+    <span class="eyebrow">Stack utilizada</span>
+    <p>Python e Django para o núcleo da plataforma, PHP e Laravel para integrações com sistemas internos já existentes.</p>
+  </div>
+
+</article>
+
+<div class="article-footer-cta">
+  <div class="contact-box reveal">
+    <span class="eyebrow">vamos conversar</span>
+    <h2 style="margin-top:14px">Quer trocar uma ideia sobre lançar produtos internos em fases?</h2>
+    <p>Estou aberto a conversas sobre liderança técnica, engenharia e IA aplicada a negócio.</p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:contato@danielcarlos.dev">contato@danielcarlos.dev</a>
+      <a class="btn" href="https://www.linkedin.com/in/danielcdasilva" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Daniel Carlos da Silva · Líder de Tecnologia · Maracanaú/CE · 2026</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Voltar ao topo">↑</button>
+
+<script src="../js/main.js"></script>
+
+</body>
+</html>
