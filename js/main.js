@@ -1,19 +1,31 @@
 const navToggle = document.getElementById('navToggle');
 const navlinks = document.getElementById('navlinks');
 
-navToggle.addEventListener('click', () => {
-  const isOpen = navlinks.classList.toggle('open');
+function setMenuOpen(isOpen) {
+  navlinks.classList.toggle('open', isOpen);
   navToggle.classList.toggle('open', isOpen);
   navToggle.setAttribute('aria-expanded', isOpen);
+  navToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+}
+
+navToggle.addEventListener('click', () => {
+  setMenuOpen(!navlinks.classList.contains('open'));
 });
 
 navlinks.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
-    navlinks.classList.remove('open');
-    navToggle.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
+    setMenuOpen(false);
   });
 });
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && navlinks.classList.contains('open')) {
+    setMenuOpen(false);
+    navToggle.focus();
+  }
+});
+
+window.matchMedia('(max-width: 820px)').addEventListener('change', () => setMenuOpen(false));
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
