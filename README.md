@@ -11,6 +11,7 @@ Site pessoal de uma página, publicado via GitHub Pages.
 ├── index.html          # markup do site (sem estilo/script embutido)
 ├── artigos/             # páginas individuais de artigo / estudo de caso
 ├── apresentacao.html    # slide-deck de trajetória (tema claro, separado da home)
+├── curriculo.html       # currículo em HTML, otimizado para ATS (gera o PDF de download)
 ├── css/
 │   ├── style.css       # CSS da home + artigos (tema dark/terminal)
 │   └── apresentacao.css # CSS isolado do slide-deck (tema claro)
@@ -19,7 +20,8 @@ Site pessoal de uma página, publicado via GitHub Pages.
 │   │                     # barra de progresso, scrollspy, voltar ao topo
 │   └── apresentacao.js # navegação por slide e animação de contagem do deck
 ├── docs/
-│   └── curriculo.md    # currículo em markdown, fonte do conteúdo do site
+│   └── curriculo.md    # currículo em markdown, fonte de conteúdo (mais detalhado)
+├── assets/curriculo-daniel-carlos-da-silva.pdf  # PDF gerado a partir de curriculo.html
 ├── sitemap.xml, robots.txt
 └── update-site.sh       # script para publicar alterações
 ```
@@ -45,6 +47,10 @@ Site pessoal de uma página, publicado via GitHub Pages.
 ## Publicando um novo artigo
 
 A seção "Artigos" da home lista estudos de caso em `/artigos/`, um arquivo HTML por artigo (sem CMS). O passo a passo completo — estrutura esperada, convenções de caminho relativo, classes CSS a reaproveitar e regras de conteúdo — está documentado em **[`CLAUDE.md`](./CLAUDE.md)**, que também serve de guia para assistentes de IA trabalhando neste repositório.
+
+## Currículo em PDF
+
+Os botões "Baixar currículo ATS (PDF)" no início da home, na seção de contato e em `curriculo.html` baixam diretamente `assets/curriculo-daniel-carlos-da-silva.pdf`. O PDF usa coluna única, texto selecionável e seções convencionais para facilitar a extração por ATS. O currículo também oferece a opção de imprimir ou salvar como PDF pelo navegador. Depois de editar o conteúdo de `curriculo.html`, regenere o PDF com o Chrome headless — comando exato e regras de formatação em **[`CLAUDE.md`](./CLAUDE.md)**. Inclua o arquivo PDF no commit ao publicar.
 
 ## Stack
 

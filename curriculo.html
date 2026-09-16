@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currículo — Daniel Carlos da Silva</title>
+<meta name="description" content="Currículo de Daniel Carlos da Silva, Líder de Tecnologia — liderança, engenharia Python/PHP, AWS Serverless, Data Lake e IA aplicada a negócio.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://danielcarlos.dev/curriculo.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#171b1e;
+  --ink-dim:#4a5559;
+  --line:#d8dee0;
+  --accent:#0b5d52;
+  --bg-page:#e9ebec;
+  --bg-paper:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg-page);color:var(--ink);
+  font-family:'Inter',Arial,Helvetica,sans-serif;
+  line-height:1.42;
+  -webkit-font-smoothing:antialiased;
+}
+.toolbar{
+  position:fixed;top:0;left:0;right:0;z-index:10;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 22px;background:#171b1e;color:#fff;
+}
+.toolbar a{color:#cfd6d8;text-decoration:none;font-size:13.5px}
+.toolbar a:hover{color:#fff}
+.toolbar button{
+  font-family:inherit;font-size:13.5px;font-weight:600;color:#171b1e;background:#fff;
+  border:none;border-radius:6px;padding:9px 16px;cursor:pointer;
+}
+.toolbar button:hover{background:#e9ebec}
+.toolbar .download{display:inline-block;background:#fff;color:#171b1e;font-weight:600;padding:9px 16px;border-radius:6px}
+.toolbar-actions{display:flex;flex-wrap:wrap;gap:8px}
+@media screen and (max-width:680px){
+  .toolbar{position:sticky;flex-wrap:wrap;gap:12px;padding:12px 18px}
+  .toolbar-actions{width:100%}
+  .toolbar-actions>*{min-height:44px;text-align:center;flex:1 1 180px}
+  .page{margin:18px 0;padding:28px 20px;overflow-wrap:anywhere}
+  .contact-line span{white-space:normal}
+  .summary{text-align:left}
+}
+
+.page{
+  max-width:800px;margin:70px auto 60px;background:var(--bg-paper);
+  padding:52px 56px;box-shadow:0 8px 30px rgba(0,0,0,.12);
+}
+
+header.cv-head{margin-bottom:20px}
+h1{font-size:25px;font-weight:700;letter-spacing:-.01em}
+.role-line{font-size:13.5px;color:var(--accent);font-weight:600;margin-top:3px}
+.contact-line{font-size:12.5px;color:var(--ink-dim);margin-top:8px}
+.contact-line span{white-space:nowrap}
+.contact-line span + span::before{content:"  ·  ";color:var(--line)}
+.contact-line a{color:var(--accent);text-decoration:none}
+.contact-line a:hover{text-decoration:underline}
+
+h2{
+  font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);
+  border-bottom:1.5px solid var(--accent);padding-bottom:4px;margin:22px 0 10px;
+}
+h2:first-of-type{margin-top:22px}
+
+.summary{font-size:13px;color:var(--ink);text-align:justify}
+
+.job{margin-bottom:14px}
+.job:last-child{margin-bottom:0}
+.job-title{font-size:14px;font-weight:700}
+.job-co{font-size:12.5px;color:var(--accent);font-weight:600;margin-bottom:5px}
+.bullets p{font-size:12.5px;color:var(--ink);margin-bottom:3px;text-indent:-13px;padding-left:13px}
+.bullets p b{color:var(--accent);font-weight:700}
+
+.edu-row,.cert-row{font-size:12.5px;margin-bottom:6px}
+.edu-row b,.cert-row b{font-weight:600}
+.edu-when,.cert-meta{color:var(--ink-dim)}
+
+.skills-grid p{font-size:12.5px;margin-bottom:6px}
+.skills-grid b{font-weight:600;color:var(--ink-dim)}
+
+.targets{font-size:12px;color:var(--ink-dim);margin-top:4px}
+
+@media print{
+  @page{size:A4;margin:14mm 16mm}
+  body{background:#fff}
+  .toolbar{display:none}
+  .page{box-shadow:none;margin:0;padding:0;max-width:none}
+  h2{break-after:avoid}
+  .job{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <a href="index.html">← Voltar ao portfólio</a>
+  <div class="toolbar-actions">
+    <a class="download" href="assets/curriculo-daniel-carlos-da-silva.pdf" download="curriculo-daniel-carlos-da-silva.pdf">Baixar currículo ATS (PDF)</a>
+    <button onclick="window.print()">Imprimir / Salvar como PDF</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <header class="cv-head">
+    <h1>Daniel Carlos da Silva</h1>
+    <div class="role-line">Gerente de Tecnologia · Engineering Manager · Cloud AWS · Dados &amp; IA</div>
+    <div class="contact-line">
+      <span>Maracanaú, Ceará, Brasil</span>
+      <span>contato@danielcarlos.dev</span>
+      <span>(85) 98801-2177</span>
+      <span><a href="https://www.linkedin.com/in/danielcdasilva" target="_blank" rel="noopener">https://www.linkedin.com/in/danielcdasilva</a></span>
+      <span><a href="https://danielcarlos.dev" target="_blank" rel="noopener">https://danielcarlos.dev</a></span>
+    </div>
+    <div class="targets">Posições-alvo: Gerente de Tecnologia/TI · Engineering Manager · Tech Lead Manager · Coordenador de TI · Gerente de Projetos de Dados</div>
+  </header>
+
+  <h2>Resumo Profissional</h2>
+  <p class="summary">Gerente de Tecnologia com 11+ anos de experiência em liderança de times multidisciplinares, engenharia de software, cloud computing, dados e inteligência artificial aplicada a negócio. Combino visão técnica hands-on (Python, PHP, AWS, Data Lake, agentes de IA) com gestão de pessoas e governança, entregando soluções escaláveis e orientadas a resultado operacional e financeiro.</p>
+
+  <h2>Experiência Profissional</h2>
+
+  <div class="job">
+    <div class="job-title">Gerente de Tecnologia | Data &amp; Cloud Engineering Manager</div>
+    <div class="job-co">3e Soluções · Fortaleza/CE · Jun 2022 — Atual</div>
+    <div class="bullets">
+      <p><b>•</b> Liderança direta de time multidisciplinar de 19 pessoas (dev, infraestrutura, suporte, dados), aplicando Scrum, sprints semanais, Kanban e o framework Cynefin.</p>
+      <p><b>•</b> Estruturação de gestão de SLA por dados e indicadores: 4.260 tickets resolvidos no ano, SLA de primeira resposta de 99,7%, SLA de resolução de 99,65% e First Contact Resolution de 79,2%.</p>
+      <p><b>•</b> Condução de ciclos de feedback e Planos de Desenvolvimento Individual (PDI) com modelo CHA, consolidando a cultura Full Cycle no time de tecnologia.</p>
+      <p><b>•</b> Arquitetura e implementação de soluções cloud-native em AWS Serverless, incluindo Data Lake corporativo (arquitetura Medallion) com governança e conformidade LGPD.</p>
+      <p><b>•</b> Engenharia hands-on em Python (Django) e PHP (Laravel) — liderança da criação e lançamento beta da plataforma interna de controle de ponto 3e Cronos.</p>
+      <p><b>•</b> Desenvolvimento de sistema multi-agente de IA para triagem e análise automatizada de editais de licitação, reduzindo significativamente o tempo de análise manual.</p>
+      <p><b>•</b> Liderança técnica da plataforma eco3e (programas E+ Reciclagem e Ecoenel, concessionárias Enel e Equatorial), com agentes de IA para auditoria e rastreabilidade digital.</p>
+      <p><b>•</b> Condução tecnológica do projeto Troca com Bônus (Equatorial Goiás): arquitetura sustentando mais de 2 milhões de requisições e R$ 12 milhões em verba processados.</p>
+      <p><b>•</b> Supervisão de sistema de IA para automação de auditoria e validação de relatórios de campo geolocalizados, alcançando 100% de integração e conformidade (Approvols/LPT).</p>
+      <p><b>•</b> Suporte tecnológico ao crescimento de 52% da empresa em 2024 (revista Exame), com projeção de R$ 200 milhões de faturamento para 2026.</p>
+      <p><b>•</b> Gestão de stakeholders, otimização contínua de custos de infraestrutura cloud e governança de segurança da informação e LGPD no setor energético.</p>
+    </div>
+  </div>
+
+  <div class="job">
+    <div class="job-title">Analista de TI Sênior</div>
+    <div class="job-co">3e Soluções · Out 2019 — Jun 2022</div>
+    <div class="bullets">
+      <p><b>•</b> Análise de requisitos e especificação de soluções tecnológicas de medição e geração de energia.</p>
+      <p><b>•</b> Engenharia de integrações e telemetria em tempo real de usinas fotovoltaicas via Solar View e medidores Kron, com análise de consumo residencial e industrial.</p>
+      <p><b>•</b> Entrega de projetos de alta complexidade dentro do prazo, com alto desempenho e padrões rigorosos de qualidade.</p>
+    </div>
+  </div>
+
+  <div class="job">
+    <div class="job-title">Analista de TI Pleno</div>
+    <div class="job-co">3e Soluções · Fev 2018 — Out 2019</div>
+    <div class="bullets">
+      <p><b>•</b> Levantamento de requisitos e especificação de sistemas internos de gestão de projetos socioambientais e fluxos de vendas.</p>
+      <p><b>•</b> Suporte e manutenção de integrações complexas via APIs entre plataformas corporativas.</p>
+      <p><b>•</b> Administração de servidores, assegurando estabilidade, segurança e alta disponibilidade das aplicações.</p>
+    </div>
+  </div>
+
+  <div class="job">
+    <div class="job-title">Assistente de TI</div>
+    <div class="job-co">3e Soluções · Fev 2015 — Fev 2018</div>
+    <div class="bullets">
+      <p><b>•</b> Suporte técnico N1 via Helpdesk, com resolução ágil de incidentes operacionais.</p>
+      <p><b>•</b> Gestão de ativos de hardware e apoio à manutenção da infraestrutura interna de TI.</p>
+    </div>
+  </div>
+
+  <h2>Formação Acadêmica</h2>
+  <p class="edu-row"><b>Pós-graduação Lato Sensu — Inteligência Artificial</b> · UNIFOR <span class="edu-when">— Jan 2026 – Dez 2026 (em curso)</span></p>
+  <p class="edu-row"><b>MBA — Liderança e Gestão de Pessoas</b> · Descomplica <span class="edu-when">— Mai 2026 – Fev 2027 (em curso)</span></p>
+  <p class="edu-row"><b>Pós-graduação Lato Sensu — Engenharia de Software</b> · Descomplica <span class="edu-when">— Jul 2025 – Jan 2026 (concluída)</span></p>
+  <p class="edu-row"><b>Graduação Tecnológica — Redes de Computadores</b> · Faculdade Evolução <span class="edu-when">— 2013 – 2016 (concluída)</span></p>
+
+  <h2>Certificações</h2>
+  <p class="cert-row"><b>Gerenciamento Avançado de Projetos</b> — <span class="cert-meta">Descomplica · out 2025</span></p>
+  <p class="cert-row"><b>Comunicação Assertiva para Gestores de Alto Desempenho</b> — <span class="cert-meta">LinkedIn · dez 2025</span></p>
+  <p class="cert-row"><b>Interface de Software</b> — <span class="cert-meta">Descomplica · ago 2025</span></p>
+  <p class="cert-row"><b>Metodologias de Desenvolvimento de Software</b> — <span class="cert-meta">Descomplica · jul 2025</span></p>
+  <p class="cert-row"><b>Essencial DataBase</b> — <span class="cert-meta">Descomplica · mar 2024</span></p>
+  <p class="cert-row"><b>Gestão de Pessoas — Times de Alto Desempenho</b> — <span class="cert-meta">Descomplica · nov 2023</span></p>
+  <p class="cert-row"><b>Docker: criando containers sem dor de cabeça</b> — <span class="cert-meta">Alura · jan 2022</span></p>
+  <p class="cert-row"><b>Bizagi: mapeamento de processos com BPMN</b> — <span class="cert-meta">Alura · dez 2021</span></p>
+  <p class="cert-row"><b>PHP: Orientação a Objetos (partes 1 e 2)</b> — <span class="cert-meta">Alura · jun 2019</span></p>
+
+  <h2>Competências Técnicas</h2>
+  <div class="skills-grid">
+    <p><b>Liderança:</b> Gestão de times multidisciplinares, 1:1, feedback, PDI, modelo CHA, cultura Full Cycle, gestão de stakeholders</p>
+    <p><b>Metodologias:</b> Scrum, Kanban, Sprints semanais, Framework Cynefin, Gestão de SLA e indicadores</p>
+    <p><b>Linguagens &amp; Frameworks:</b> Python, Django, PHP, Laravel, Node.js, React (apoio)</p>
+    <p><b>Cloud &amp; DevOps:</b> AWS Serverless, AWS Lambda, S3, Docker, CI/CD, APIs REST, Microsserviços</p>
+    <p><b>Dados &amp; IA:</b> Data Lake (arquitetura Medallion), Apache Spark, PySpark, ETL/ELT, LLMs, Agentes Autônomos de IA, Machine Learning (Microsoft Azure ML), Power BI</p>
+    <p><b>Bancos de Dados:</b> MySQL, PostgreSQL</p>
+    <p><b>Governança:</b> LGPD, Governança de Dados, Segurança da Informação, Gestão de Incidentes</p>
+  </div>
+
+</div>
+
+</body>
+</html>
