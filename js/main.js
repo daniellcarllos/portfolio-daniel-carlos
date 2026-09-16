@@ -34,7 +34,7 @@ const revealObserver = new IntersectionObserver((entries) => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0 });
 
 document.querySelectorAll('.reveal').forEach((el, i) => {
   el.style.transitionDelay = `${(i % 3) * 0.06}s`;

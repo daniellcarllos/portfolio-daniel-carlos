@@ -348,7 +348,7 @@ section{padding:74px 0;border-bottom:1px solid var(--line-soft)}
   display:inline-flex;align-items:center;gap:8px;margin-bottom:26px;transition:color .2s;
 }
 .article-hero .back-link:hover{color:var(--accent-2)}
-.article-hero .cat{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent-2);letter-spacing:.12em;text-transform:uppercase}
+.article-hero .cat{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent-2);letter-spacing:.12em;text-transform:uppercase}
 .article-hero h1{
   font-family:'Space Grotesk',sans-serif;font-weight:700;
   font-size:clamp(28px,5vw,44px);line-height:1.12;letter-spacing:-.02em;
@@ -359,7 +359,14 @@ section{padding:74px 0;border-bottom:1px solid var(--line-soft)}
   display:flex;flex-wrap:wrap;gap:10px 22px;
   font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-faint);
 }
-.article-body{padding:56px 0;max-width:70ch;margin:0 auto}
+.article-body{position:relative;z-index:1;padding:56px 28px;max-width:calc(70ch + 56px);margin:0 auto;overflow-wrap:anywhere}
+/* Reading must never depend on a scroll animation or JavaScript. */
+.article-body.reveal{opacity:1;transform:none;transition:none}
+.article-loading{display:none;position:relative;z-index:1;max-width:calc(70ch + 56px);margin:0 auto;padding:20px 28px;color:var(--ink-dim);font-size:14px;align-items:center;gap:10px}
+html.article-is-loading .article-loading{display:flex}
+.article-loading::before{content:"";width:18px;height:18px;flex-shrink:0;border:2px solid var(--line);border-top-color:var(--accent-2);border-radius:50%;animation:article-spin .8s linear infinite}
+@keyframes article-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.article-loading::before{animation:none}}
 .article-body h2{
   font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(20px,2.6vw,26px);
   letter-spacing:-.01em;margin:44px 0 16px;
@@ -382,7 +389,7 @@ section{padding:74px 0;border-bottom:1px solid var(--line-soft)}
 .article-callout p{margin-bottom:0;color:var(--ink-dim);font-size:14.5px}
 .article-stack{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
 .article-footer-cta{
-  max-width:70ch;margin:0 auto;padding:0 0 64px;
+  position:relative;z-index:1;max-width:calc(70ch + 56px);margin:0 auto;padding:0 28px 64px;overflow-wrap:anywhere;
 }
 
 /* ---------- SKILLS ---------- */
@@ -456,6 +463,12 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-f
   .role-pill{max-width:100%;font-size:12px;padding:9px 12px}
   .edu-item .st{display:inline-block;margin:4px 0 0}
   .article-meta{flex-wrap:wrap}
+  .article-hero{padding:36px 0 30px}
+  .article-body{padding:36px 18px}
+  .article-footer-cta{padding:0 18px 48px}
+  .article-loading{padding:16px 18px}
+  .article-meta-row{gap:8px 12px;font-size:12px}
+  .article-callout{padding:18px 16px}
   .contact-box{padding:30px 20px}
   .contact-links{flex-direction:column}
   .contact-links .btn{justify-content:center}
