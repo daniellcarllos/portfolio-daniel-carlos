@@ -93,6 +93,18 @@ Desenvolveu e implementou um sistema experimental composto por múltiplos agente
 
 **Tecnologias:** Python, LLMs, Agentes Autônomos, Automação de Processos
 
+#### 3e Lex — Assistente de IA para Análise de Contratos
+*3e Soluções · 2026*
+
+Desenvolveu um sistema de agentes de IA que responde, via chat, perguntas sobre os contratos em PDF de cada projeto (prazos, valores, obrigações, multas e riscos), sempre com a fonte: documento, cláusula, página e trecho literal, com link para abrir o PDF na página citada. O pipeline de cada documento roda em segundo plano: leitura do PDF com OCR para páginas escaneadas, divisão em cláusulas, indexação para busca semântica (RAG) e análise de risco que identifica cláusulas de multa e penalidade. Antes de exibir uma resposta, um auditor automático confere se os trechos citados existem no documento e se números e datas aparecem na fonte; quando a informação não está nos documentos, o sistema avisa em vez de inventar.
+
+**Diferenciais:**
+- Um projeto pode ter vários documentos ativos (contrato, aditivos, anexos), consultados juntos; chat por projeto, por cliente ou geral
+- Mapa de riscos e resumo executivo (valor, escopo e riscos) por contrato
+- Controle de acesso por projeto, PDFs cifrados em repouso, perfis de administrador e usuário, e histórico de atividades com log de acesso
+
+**Tecnologias:** Python, FastAPI, LangGraph, PostgreSQL + pgvector, Celery/Redis, OpenRouter, React, TypeScript, Docker
+
 ### Dados & Cloud Engineering
 
 #### Arquitetura AWS Serverless e Data Lake Corporativo

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3e Lex: IA para análise de contratos e aditivos — Daniel Carlos da Silva</title>
+<meta name="description" content="Como construí um time de agentes de IA que centraliza a informação de contratos e aditivos e responde com citação de cláusula e página, e o que mudou na decisão operacional.">
+<meta name="theme-color" content="#0c1417">
+<link rel="canonical" href="https://danielcarlos.dev/artigos/3e-lex-analise-contratos-ia.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3e Lex: IA para análise de contratos e aditivos">
+<meta property="og:description" content="Informação de contrato espalhada, aditivos difíceis de acompanhar e escopo impreciso: como um assistente de IA que cita a fonte passou a apoiar a decisão operacional.">
+<meta property="og:url" content="https://danielcarlos.dev/artigos/3e-lex-analise-contratos-ia.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://danielcarlos.dev/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3e Lex: IA para análise de contratos e aditivos">
+<meta name="twitter:description" content="Decisões de arquitetura e aprendizados construindo um assistente de IA que responde sobre contratos citando cláusula e página.">
+<meta name="twitter:image" content="https://danielcarlos.dev/assets/og-image.png">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/article.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "3e Lex: IA para análise de contratos e aditivos",
+  "description": "Como construí um time de agentes de IA que centraliza a informação de contratos e aditivos e responde com citação de cláusula e página, e o que mudou na decisão operacional.",
+  "author": { "@type": "Person", "name": "Daniel Carlos da Silva", "url": "https://danielcarlos.dev/" },
+  "url": "https://danielcarlos.dev/artigos/3e-lex-analise-contratos-ia.html"
+}
+</script>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="scroll-progress"><span id="scrollBar"></span></div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../index.html">DC<span>.</span>silva</a>
+    <div class="navlinks" id="navlinks">
+      <a href="../index.html#sobre">Sobre</a>
+      <a href="../index.html#projetos">Projetos</a>
+      <a href="../index.html#artigos">Artigos</a>
+      <a href="../index.html#contato">Contato</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+  </div>
+</nav>
+
+<header class="article-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#artigos">← Voltar para Artigos</a>
+    <span class="cat">Inteligência Artificial · Operação</span>
+    <h1>3e Lex: como construí um assistente de IA que centraliza contratos e aditivos e cita a fonte</h1>
+    <p class="dek">Informação de contrato espalhada, aditivos difíceis de acompanhar e escopo impreciso. O que decidi na arquitetura para que a resposta fosse confiável o bastante para apoiar decisão operacional.</p>
+    <div class="article-meta-row">
+      <span>Daniel Carlos da Silva</span>
+      <span>·</span>
+      <span>6 min de leitura</span>
+      <span>·</span>
+      <span>3e Soluções</span>
+    </div>
+  </div>
+</header>
+
+<div class="article-loading" role="status" aria-live="polite">Carregando texto do artigo...</div>
+
+<article class="article-body">
+
+  <h2>O problema</h2>
+  <p>Numa operação com vários clientes e projetos, cada um com seu contrato, a informação sobre o que foi acordado fica <strong>espalhada</strong>: no PDF do contrato, nos anexos, nas especificações e, principalmente, nos aditivos. Quando alguém da operação precisa saber o prazo, o valor, a obrigação de uma parte ou o que acontece em caso de atraso, a resposta depende de achar o documento certo e de ler cláusulas em textos longos.</p>
+  <p>Os <strong>aditivos</strong> eram o ponto mais difícil. Um aditivo altera pedaços específicos do que foi contratado, então a resposta correta muitas vezes está na combinação do contrato original com um ou mais aditivos, e não em um único documento. Sem uma visão centralizada, o risco é decidir com base em informação incompleta ou desatualizada sobre o escopo.</p>
+  <p>O objetivo do 3e Lex foi reunir os documentos de cada projeto em um só lugar e permitir que pessoas autorizadas perguntem em linguagem natural, recebendo respostas <strong>com a fonte</strong>: documento, cláusula, página e o trecho literal.</p>
+
+  <h2>Decisões de arquitetura</h2>
+  <p>Em contrato, uma resposta plausível mas errada é pior do que nenhuma resposta. Por isso as principais decisões giraram em torno de <strong>rastreabilidade</strong>, não de fluência do texto gerado.</p>
+  <ul>
+    <li><strong>Time de agentes, cada um com uma responsabilidade.</strong> Um agente lê o PDF (com OCR para páginas escaneadas) e o divide em cláusulas; outro indexa para busca semântica; outro identifica cláusulas de multa e penalidade; um orquestrador decide o caminho de cada pergunta; e um respondedor redige a resposta com citação obrigatória.</li>
+    <li><strong>Auditor de citação determinístico.</strong> Antes de exibir a resposta, um auditor confere por código se os trechos citados existem de fato no documento e se números e datas da resposta aparecem na fonte. Não usei um segundo LLM como validador principal: ele também pode alucinar e "confirmar" uma citação que não bate. O LLM entra só no caso ambíguo.</li>
+    <li><strong>Chunking por cláusula.</strong> Dividir o contrato em blocos de tamanho fixo corta cláusulas ao meio e prejudica tanto a busca quanto a citação. A unidade de indexação respeita a estrutura do contrato, e cada trecho carrega cláusula e página de origem.</li>
+    <li><strong>Vários documentos ativos por projeto.</strong> Contrato, aditivos e anexos são consultados juntos, no mesmo índice. Um novo upload soma aos existentes; para aposentar um documento, o administrador o desativa explicitamente, e as citações antigas continuam rastreáveis.</li>
+    <li><strong>Isolamento por projeto.</strong> O usuário só consulta os projetos aos quais tem acesso, e há teste automatizado de isolamento entre projetos. Os PDFs ficam cifrados em disco e todo acesso e alteração entra no histórico de atividades.</li>
+    <li><strong>Resposta só com base nos documentos.</strong> Se a informação não está lá, o sistema diz que não encontrou, em vez de completar com conhecimento geral.</li>
+  </ul>
+  <blockquote>Em contrato, o valor do assistente não está em responder rápido, e sim em responder de um jeito que dê para conferir.</blockquote>
+
+  <h2>Desafios &amp; aprendizados</h2>
+  <p>O aprendizado mais importante veio justamente dos aditivos. O planejamento inicial tratava um aditivo como uma <strong>nova versão</strong> do contrato, que substituiria a anterior. A versão final foi diferente: todos os documentos do projeto ficam ativos ao mesmo tempo. Um aditivo costuma alterar pontos específicos, e não reescrever o contrato inteiro, então responder bem exige ler o conjunto.</p>
+  <p>O segundo aprendizado foi sobre o <strong>escopo da consulta</strong>. O sistema nasceu com chat por projeto. Com o uso, foram surgindo o chat por cliente, o chat geral com um guia de dois passos para escolher cliente e projeto, e o resumo executivo com valor, escopo e riscos por contrato. A pergunta operacional raramente se limita a um único documento.</p>
+  <p>O terceiro é sobre <strong>confiança</strong>. Mesmo com auditor, citação e fonte clicável, o sistema não substitui a leitura do trecho: o próprio guia de uso avisa que, em decisão contratual importante, a fonte deve ser aberta e conferida. O que a arquitetura faz é tornar essa conferência rápida, porque cada resposta já aponta para a página certa do PDF.</p>
+
+  <h2>Resultado</h2>
+  <p>O 3e Lex passou a ser usado na <strong>tomada de decisão operacional</strong>. O ganho mais claro está na <strong>informação de escopo</strong>: o que antes ficava difundido entre contratos, anexos e aditivos passou a ficar centralizado, com respostas mais precisas e com a origem visível. Os aditivos, que eram o maior ponto de dificuldade, deixaram de exigir uma busca manual documento a documento.</p>
+  <p>Este artigo não traz números de ganho de tempo ou de volume de uso: o impacto que afirmo aqui é qualitativo, e a evolução do sistema (chat por cliente, resumo executivo, histórico de atividades) segue guiada pelo que a operação pede.</p>
+
+  <div class="article-callout">
+    <span class="eyebrow">Stack utilizada</span>
+    <p>Python 3.12 e FastAPI no backend; LangGraph para orquestrar os agentes; PostgreSQL com pgvector para busca semântica; Celery e Redis para o processamento dos documentos em segundo plano; OpenRouter como gateway de LLM; React com TypeScript no frontend; Docker para execução e implantação.</p>
+  </div>
+
+</article>
+
+<div class="article-footer-cta">
+  <div class="contact-box reveal">
+    <span class="eyebrow">vamos conversar</span>
+    <h2 style="margin-top:14px">Quer trocar uma ideia sobre IA aplicada a documentos e contratos?</h2>
+    <p>Estou aberto a conversas sobre liderança técnica, engenharia e IA aplicada a negócio.</p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:contato@danielcarlos.dev">contato@danielcarlos.dev</a>
+      <a class="btn" href="https://www.linkedin.com/in/danielcdasilva" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Daniel Carlos da Silva · Líder de Tecnologia · Maracanaú/CE · 2026</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Voltar ao topo">↑</button>
+
+<script src="../js/main.js"></script>
+
+</body>
+</html>
