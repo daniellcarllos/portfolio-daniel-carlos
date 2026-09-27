@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>De 2 milhões de requisições a R$ 12 milhões em operação — Daniel Carlos da Silva</title>
-<meta name="description" content="Os desafios de engenharia por trás do Troca com Bônus Equatorial GO: por que escala técnica sozinha diz pouco, e o que aprendi conectando arquitetura, dados e resultado financeiro.">
+<title>Troca com Bônus Equatorial: arquitetura serverless em escala — Daniel Carlos da Silva</title>
+<meta name="description" content="Como levei o backend do Troca com Bônus Equatorial para arquitetura serverless na AWS, protegi um cadastro público de dados pessoais em duas camadas de borda e o que os números de aprovação ensinaram sobre elegibilidade automatizada.">
 <meta name="theme-color" content="#0c1417">
 <link rel="canonical" href="https://danielcarlos.dev/artigos/troca-bonus-equatorial-go.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="De 2 milhões de requisições a R$ 12 milhões em operação">
-<meta property="og:description" content="Por que escala técnica sozinha diz pouco, e o que aprendi conectando arquitetura, dados e resultado financeiro numa operação real de grande porte.">
+<meta property="og:title" content="Troca com Bônus Equatorial: arquitetura serverless em escala">
+<meta property="og:description" content="Por que levei o backend para AWS Serverless, como protegi o cadastro público em duas camadas de borda e o que os números de aprovação me ensinaram sobre elegibilidade automatizada.">
 <meta property="og:url" content="https://danielcarlos.dev/artigos/troca-bonus-equatorial-go.html">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:image" content="https://danielcarlos.dev/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="De 2 milhões de requisições a R$ 12 milhões em operação">
-<meta name="twitter:description" content="Os desafios de engenharia por trás do Troca com Bônus Equatorial GO.">
+<meta name="twitter:title" content="Troca com Bônus Equatorial: arquitetura serverless em escala">
+<meta name="twitter:description" content="Arquitetura serverless, proteção de borda e elegibilidade automatizada por trás do Troca com Bônus Equatorial.">
 <meta name="twitter:image" content="https://danielcarlos.dev/assets/og-image.png">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../assets/favicon.ico" sizes="any">
@@ -31,8 +31,8 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "De 2 milhões de requisições a R$ 12 milhões em operação: os desafios de engenharia por trás do Troca com Bônus Equatorial GO",
-  "description": "Por que escala técnica sozinha diz pouco, e o que aprendi conectando arquitetura, dados e resultado financeiro numa operação real de grande porte.",
+  "headline": "Troca com Bônus Equatorial: arquitetura serverless para uma campanha de dados pessoais em escala",
+  "description": "Como levei o backend do Troca com Bônus Equatorial para arquitetura serverless na AWS, protegi um cadastro público de dados pessoais em duas camadas de borda e o que os números de aprovação ensinaram sobre elegibilidade automatizada.",
   "author": { "@type": "Person", "name": "Daniel Carlos da Silva", "url": "https://danielcarlos.dev/" },
   "url": "https://danielcarlos.dev/artigos/troca-bonus-equatorial-go.html"
 }
@@ -60,9 +60,9 @@
 <header class="article-hero">
   <div class="wrap">
     <a class="back-link" href="../index.html#artigos">← Voltar para Artigos</a>
-    <span class="cat">Arquitetura &amp; Dados</span>
-    <h1>De 2 milhões de requisições a R$ 12 milhões em operação: os desafios de engenharia por trás do Troca com Bônus Equatorial GO</h1>
-    <p class="dek">Por que escala técnica sozinha diz pouco, e o que aprendi conectando arquitetura, dados e resultado financeiro numa operação real de grande porte.</p>
+    <span class="cat">Produtos Digitais &amp; Cloud</span>
+    <h1>Troca com Bônus Equatorial: arquitetura serverless para uma campanha de dados pessoais em escala</h1>
+    <p class="dek">Por que levei o backend para AWS Serverless, como protegi o cadastro público em duas camadas de borda e o que os números de aprovação me ensinaram sobre elegibilidade automatizada.</p>
     <div class="article-meta-row">
       <span>Daniel Carlos da Silva</span>
       <span>·</span>
@@ -78,41 +78,26 @@
 <article class="article-body">
 
   <h2>O problema</h2>
-  <p>Em tecnologia, é relativamente fácil falar sobre escalabilidade quando o sistema ainda está no diagrama de arquitetura.</p>
-  <p>O desafio real começa quando milhares de pessoas passam a utilizar a solução, o volume cresce rapidamente e cada indisponibilidade deixa de ser apenas um problema técnico para se tornar um problema operacional e financeiro.</p>
-  <p>Em 2026, tive a oportunidade de participar da condução tecnológica do projeto <strong>Troca com Bônus — Equatorial Goiás</strong>, uma operação que conectou tecnologia, atendimento ao cliente, varejo, análise de dados e eficiência energética.</p>
-  <p>Durante a operação, a arquitetura responsável pelo fluxo de cadastros precisou suportar mais de <strong>2 milhões de requisições</strong>, mantendo disponibilidade e capacidade de processamento em um cenário de grande concentração de acessos.</p>
-  <p>Mas escala técnica, isoladamente, diz pouco.</p>
-  <p>O que torna esse projeto particularmente interessante são os números de negócio que estavam por trás dessas requisições. No momento deste levantamento, o dashboard da operação registrava a casa de <strong>15 mil pré-cadastros aprovados</strong>, mais de <strong>6 mil vendas confirmadas</strong> e uma verba de projeto já consumida na faixa de <strong>99% do total disponível</strong> — cerca de <strong>R$ 12 milhões</strong>.</p>
-  <p>Ou seja: não estávamos simplesmente mantendo uma aplicação web funcionando. Estávamos sustentando tecnologicamente uma operação que movimentou mais de R$ 12 milhões.</p>
+  <p>O <strong>Troca com Bônus</strong> é um programa da Equatorial Goiás dentro do Programa de Eficiência Energética (PEE) da ANEEL, realizado em parceria com uma rede varejista. A plataforma que sustenta essa adesão faz três coisas: recebe o pré-registro do consumidor, avalia a elegibilidade de cada unidade consumidora segundo os critérios do programa, e dá à gestão da campanha um dashboard para acompanhar cadastros e vendas em tempo real.</p>
+  <p>Dois fatores tornavam esse projeto diferente de uma aplicação de cadastro comum. Primeiro, o formulário fica aberto ao público e coleta <strong>dados pessoais</strong> do consumidor — o que muda o padrão de segurança exigido na borda da aplicação. Segundo, campanhas desse tipo concentram acesso em janelas curtas de tempo: um anúncio ou uma ação de divulgação pode multiplicar o tráfego de um dia para o outro, e a infraestrutura precisa absorver isso sem que alguém precise provisionar servidor manualmente.</p>
 
   <h2>Decisões de arquitetura</h2>
-  <p>Projetar uma aplicação para alguns milhares de acessos é uma coisa. Projetá-la sabendo que uma campanha pode gerar picos concentrados de requisições é outra completamente diferente.</p>
-  <p>Nesse tipo de cenário, algumas decisões passam a ser fundamentais:</p>
-  <ul>
-    <li><strong>Escalabilidade</strong> — a infraestrutura precisa absorver crescimento sem exigir intervenção manual a cada aumento de demanda.</li>
-    <li><strong>Observabilidade</strong> — não basta saber que "o sistema está funcionando". É necessário acompanhar comportamento, erros, gargalos e capacidade da infraestrutura.</li>
-    <li><strong>Performance</strong> — uma diferença de poucos segundos pode representar milhares de pessoas esperando simultaneamente por uma resposta.</li>
-    <li><strong>Resiliência</strong> — falhas precisam ser isoladas para evitar que um problema específico comprometa toda a operação.</li>
-    <li><strong>Dados</strong> — a tecnologia também precisa transformar a operação em informação capaz de orientar decisões.</li>
-  </ul>
-  <p>Foi justamente por isso que o <strong>dashboard gerencial</strong> se tornou uma parte importante da solução. Ele permitiu acompanhar não apenas indicadores técnicos, mas o resultado da operação praticamente em tempo real.</p>
+  <p>O time já operava em PHP, e não havia motivo para trocar de linguagem só para resolver o problema de escala — o problema era de <strong>arquitetura de infraestrutura</strong>, não de linguagem. Mantive a stack do time e levei o <strong>backend para arquitetura serverless na AWS</strong> (AWS Lambda): a capacidade de processamento passa a acompanhar a demanda automaticamente, em vez de depender de um servidor dimensionado para o pior caso o tempo todo.</p>
+  <p>O front-end é publicado via <strong>AWS Amplify</strong>, o que simplifica a entrega contínua da interface de cadastro sem manter infraestrutura própria para isso.</p>
+  <p>Como o formulário é público e coleta dado pessoal, a proteção de borda não podia depender de uma única camada. Coloquei <strong>AWS WAF e Cloudflare</strong> em conjunto: duas camadas de filtro contra bots e tráfego malicioso antes de qualquer requisição chegar à aplicação. Em um cadastro aberto ao público, essa é a diferença entre uma campanha estável e uma campanha vulnerável a abuso automatizado logo no primeiro pico de divulgação.</p>
+  <blockquote>Num cadastro público de dados pessoais, a arquitetura de borda não é um detalhe de infraestrutura — é parte do compromisso com quem está preenchendo o formulário.</blockquote>
 
   <h2>Desafios &amp; aprendizados</h2>
-  <p>Os números do dashboard não serviam só para acompanhamento técnico — apoiavam perguntas diretas de negócio: onde existe maior adesão, onde existe capacidade para expansão, quais equipamentos possuem maior demanda, onde concentrar operação, estoque ou atendimento, quais regiões precisam de ações específicas.</p>
-  <p>É nesse momento que engenharia de software, dados e estratégia começam a se encontrar. Uma aplicação transacional gera dados. Uma boa plataforma transforma esses dados em capacidade de decisão.</p>
-  <p>Projetos assim reforçam algo que tenho percebido cada vez mais atuando na gestão de tecnologia: <strong>escalabilidade não é somente aumentar servidores</strong>. É necessário escalar arquitetura, processos e pessoas ao mesmo tempo.</p>
-  <p>A aplicação pode estar preparada para milhões de requisições, mas o projeto ainda falha se o suporte não estiver preparado. O sistema pode responder em milissegundos, mas a operação ainda pode parar se uma integração não tiver mecanismos adequados de contingência. O banco pode suportar milhares de transações, mas a gestão continua tomando decisões lentamente se não existir uma camada de dados capaz de transformar essas informações em indicadores.</p>
-  <p>Por isso, hoje enxergo arquitetura em pelo menos quatro dimensões: <strong>Tecnologia → Dados → Operação → Negócio.</strong> Quando uma decisão tecnológica melhora essas quatro dimensões simultaneamente, deixamos de falar apenas de desenvolvimento de software e começamos a falar de engenharia aplicada ao resultado empresarial.</p>
-  <blockquote>É possível olhar para o sistema e discutir requisições, APIs e disponibilidade. Mas também é possível olhar para o mesmo sistema e encontrar R$ 12 milhões processados, milhares de vendas confirmadas e milhares de clientes aprovados.</blockquote>
+  <p>O maior aprendizado técnico foi confirmar, na prática, o motivo de escolher serverless para esse tipo de operação: uma campanha de curta duração não justifica manter capacidade ociosa o ano inteiro, e também não dá tempo de reagir manualmente a um pico. A arquitetura precisava absorver a variação sozinha, e foi isso que a combinação Lambda + Amplify entregou, sem exigir intervenção manual durante a campanha.</p>
+  <p>O outro aprendizado veio do lado do negócio, não da infraestrutura: a <strong>regra de elegibilidade</strong> aplicada automaticamente a cada cadastro precisava ser consistente entre milhares de avaliações, sem exceção caso a caso. O resultado disso aparece nos próprios números — a taxa de aprovação ficou estável em torno de 93% entre os cadastros avaliados, o que é um sinal de que os critérios estavam bem definidos e sendo aplicados de forma uniforme, não de decisão manual variando de analista para analista.</p>
+  <p>O dashboard em tempo real também mudou a forma como a gestão da campanha acompanhava o andamento: em vez de pedir um relatório para saber a situação, a informação de cadastros e vendas já estava disponível no momento em que era necessária.</p>
 
   <h2>Resultado</h2>
-  <p>Para mim, esse é um dos melhores indicadores de maturidade de uma área de tecnologia: quando conseguimos explicar uma solução tanto para um engenheiro de software quanto para uma diretoria — usando linguagens diferentes, mas falando sobre o mesmo resultado.</p>
-  <p>Tecnologia não deveria ser percebida apenas pelo sistema que entregamos. Ela precisa ser percebida pelo resultado que ajudamos o negócio a alcançar.</p>
+  <p>Com a plataforma em operação, o programa processou mais de <strong>16 mil solicitações de cadastro</strong>, com mais de <strong>14 mil clientes aprovados</strong> para participar — uma taxa de aprovação de cerca de <strong>93%</strong>, com os demais 7% reprovados por não atenderem aos critérios do programa. A campanha rodou com <strong>alta demanda e nenhum incidente grave</strong>, sustentada pela combinação de arquitetura serverless com a proteção de borda em duas camadas.</p>
 
   <div class="article-callout">
     <span class="eyebrow">Stack utilizada</span>
-    <p>Laravel e Laravel Nova para a plataforma e o painel gerencial, MySQL como banco de dados, com observabilidade e integrações dedicadas para sustentar picos de acesso em campanha.</p>
+    <p>PHP no backend, migrado para arquitetura serverless na AWS (AWS Lambda); front-end publicado via AWS Amplify; AWS WAF e Cloudflare como dupla camada de proteção de borda; APIs REST e dashboard de acompanhamento em tempo real.</p>
   </div>
 
 </article>
@@ -120,7 +105,7 @@
 <div class="article-footer-cta">
   <div class="contact-box reveal">
     <span class="eyebrow">vamos conversar</span>
-    <h2 style="margin-top:14px">Quer trocar uma ideia sobre arquitetura para operações de grande escala?</h2>
+    <h2 style="margin-top:14px">Quer trocar uma ideia sobre arquitetura serverless para campanhas em escala?</h2>
     <p>Estou aberto a conversas sobre liderança técnica, engenharia e IA aplicada a negócio.</p>
     <div class="contact-links">
       <a class="btn primary" href="mailto:contato@danielcarlos.dev">contato@danielcarlos.dev</a>
